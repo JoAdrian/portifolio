@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jó Adrian | Educação Interativa & IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0e1a;
+    --bg-2: #111827;
+    --card: #1a2035;
+    --card-2: #232a45;
+    --accent: #6366f1;
+    --accent-2: #8b5cf6;
+    --accent-3: #06b6d4;
+    --text: #e5e7eb;
+    --text-dim: #9ca3af;
+    --border: rgba(255,255,255,0.08);
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --plant: #22c55e;
+    --sun: #fbbf24;
+    --water: #3b82f6;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .bg-blur {
+    position: fixed;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    filter: blur(150px);
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .bg-blur.b1 { background: var(--accent); top: -200px; left: -100px; animation: float 15s ease-in-out infinite; }
+  .bg-blur.b2 { background: var(--accent-2); top: 40%; right: -200px; animation: float 18s ease-in-out infinite reverse; }
+  .bg-blur.b3 { background: var(--accent-3); bottom: -200px; left: 30%; animation: float 20s ease-in-out infinite; }
+
+  @keyframes float {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(50px, 80px) scale(1.15); }
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    backdrop-filter: blur(20px);
+    background: rgba(10,14,26,0.7);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent-3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .menu-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 0 60px;
+  }
+  .hero-content { max-width: 800px; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    background: rgba(99,102,241,0.1);
+    border: 1px solid rgba(99,102,241,0.3);
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .badge .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 10px var(--success);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+  h1 .gradient {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p { font-size: 1.15rem; color: var(--text-dim); margin-bottom: 32px; max-width: 600px; }
+  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: white;
+    box-shadow: 0 8px 24px rgba(99,102,241,0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(99,102,241,0.5); }
+  .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn-ghost:hover { background: var(--card); border-color: var(--accent); }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    margin-top: 60px;
+    padding: 32px;
+    background: rgba(26,32,53,0.5);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+  }
+  .stat-item .num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), var(--accent-3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .stat-item .label { color: var(--text-dim); font-size: 0.9rem; }
+
+  section { padding: 100px 0; position: relative; }
+  .section-header { text-align: center; margin-bottom: 60px; }
+  .section-tag {
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-header h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .section-header p { color: var(--text-dim); max-width: 600px; margin: 0 auto; font-size: 1.05rem; }
+
+  /* SOBRE */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .about-visual {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(139,92,246,0.2));
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(99,102,241,0.3), transparent 60%);
+  }
+  .about-visual span { position: relative; z-index: 1; }
+  .about-text h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.75rem; margin-bottom: 16px; }
+  .about-text p { color: var(--text-dim); margin-bottom: 16px; }
+  .skills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .skill {
+    padding: 6px 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+  }
+
+  /* ========== DEMO SUPREMA ========== */
+  .demo-wrap {
+    background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(6,182,212,0.08));
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .demo-wrap::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(34,197,94,0.2), transparent 60%);
+    border-radius: 50%;
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .demo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .demo-title { display: flex; align-items: center; gap: 12px; }
+  .demo-title .emoji {
+    font-size: 2.5rem;
+    filter: drop-shadow(0 4px 12px rgba(34,197,94,0.5));
+    animation: sway 3s ease-in-out infinite;
+  }
+  @keyframes sway {
+    0%,100% { transform: rotate(0deg); }
+    50% { transform: rotate(8deg); }
+  }
+  .demo-title h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; margin-bottom: 2px; }
+  .demo-title small { color: var(--text-dim); font-size: 0.85rem; }
+
+  .demo-stats { display: flex; gap: 12px; }
+  .demo-stat {
+    background: rgba(10,14,26,0.6);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px 14px;
+    text-align: center;
+    min-width: 70px;
+  }
+  .demo-stat .lbl { font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+  .demo-stat .val {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--success);
+  }
+
+  /* ABAS */
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    background: rgba(10,14,26,0.5);
+    padding: 6px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    position: relative;
+    z-index: 2;
+    overflow-x: auto;
+  }
+  .tab {
+    flex: 1;
+    min-width: 120px;
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    color: var(--text-dim);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .tab:hover:not(.active) { color: var(--text); background: rgba(255,255,255,0.03); }
+  .tab.active {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: white;
+    box-shadow: 0 4px 12px rgba(99,102,241,0.4);
+  }
+  .tab .check { color: var(--success); font-size: 0.9rem; }
+
+  .tab-content { display: none; animation: fadeIn 0.5s; position: relative; z-index: 2; }
+  .tab-content.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* TEORIA */
+  .theory-intro {
+    background: rgba(10,14,26,0.5);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .theory-intro h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .theory-intro p { color: var(--text-dim); margin-bottom: 12px; }
+  .theory-intro strong { color: var(--plant); }
+
+  /* ANIMAÇÃO VISUAL */
+  .scene {
+    background: linear-gradient(180deg, #1e3a8a 0%, #0a0e1a 100%);
+    border-radius: 16px;
+    padding: 30px 20px;
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+    min-height: 280px;
+    border: 1px solid var(--border);
+  }
+  .sun {
+    position: absolute;
+    top: 20px; right: 30px;
+    width: 70px; height: 70px;
+    background: radial-gradient(circle, #fde047, #fbbf24);
+    border-radius: 50%;
+    box-shadow: 0 0 60px #fbbf24, 0 0 100px rgba(251,191,36,0.5);
+    animation: sunPulse 3s ease-in-out infinite;
+  }
+  @keyframes sunPulse {
+    0%,100% { transform: scale(1); box-shadow: 0 0 60px #fbbf24, 0 0 100px rgba(251,191,36,0.5); }
+    50% { transform: scale(1.1); box-shadow: 0 0 80px #fbbf24, 0 0 140px rgba(251,191,36,0.7); }
+  }
+  .sun-rays {
+    position: absolute;
+    top: 55px; right: 65px;
+    width: 2px; height: 120px;
+    background: linear-gradient(180deg, rgba(251,191,36,0.8), transparent);
+    transform-origin: top;
+    animation: rayPulse 2s ease-in-out infinite;
+  }
+  .sun-rays:nth-child(2) { transform: rotate(-25deg); animation-delay: 0.3s; }
+  .sun-rays:nth-child(3) { transform: rotate(-50deg); animation-delay: 0.6s; }
+  @keyframes rayPulse {
+    0%,100% { opacity: 0.3; height: 100px; }
+    50% { opacity: 1; height: 140px; }
+  }
+
+  .plant {
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    font-size: 6rem;
+    filter: drop-shadow(0 0 20px rgba(34,197,94,0.6));
+    animation: sway 4s ease-in-out infinite;
+  }
+
+  .molecule {
+    position: absolute;
+    padding: 6px 12px;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .mol-co2 {
+    background: rgba(107,114,128,0.4);
+    color: #e5e7eb;
+    top: 60%; left: 10%;
+    animation: moveToPlant 4s ease-in-out infinite;
+  }
+  .mol-h2o {
+    background: rgba(59,130,246,0.4);
+    color: #dbeafe;
+    top: 75%; left: 20%;
+    animation: moveToPlant 4s ease-in-out infinite 0.5s;
+  }
+  .mol-o2 {
+    background: rgba(16,185,129,0.4);
+    color: #d1fae5;
+    top: 30%; right: 15%;
+    animation: moveFromPlant 4s ease-in-out infinite 1s;
+  }
+  .mol-glucose {
+    background: rgba(245,158,11,0.4);
+    color: #fef3c7;
+    top: 50%; right: 10%;
+    animation: moveFromPlant 4s ease-in-out infinite 1.5s;
+  }
+
+  @keyframes moveToPlant {
+    0% { transform: translate(0,0); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translate(200px, -60px); opacity: 0; }
+  }
+  @keyframes moveFromPlant {
+    0% { transform: translate(0,0); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translate(-150px, -40px); opacity: 0; }
+  }
+
+  .scene-label {
+    position: absolute;
+    bottom: 12px; left: 12px;
+    background: rgba(0,0,0,0.6);
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    backdrop-filter: blur(5px);
+  }
+
+  /* EQUAÇÃO */
+  .equation-display {
+    background: rgba(10,14,26,0.6);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  .equation-display .eq-label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .equation {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-weight: 700;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  .eq-part {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .eq-part.reagent { background: rgba(59,130,246,0.15); color: #93c5fd; }
+  .eq-part.product { background: rgba(34,197,94,0.15); color: #86efac; }
+  .eq-arrow { color: var(--sun); font-size: 1.2em; }
+  .eq-plus { color: var(--text-dim); }
+
+  /* FLIP CARDS */
+  .curiosities {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .flip-card {
+    perspective: 1000px;
+    height: 180px;
+    cursor: pointer;
+  }
+  .flip-card-inner {
+    position: relative;
+    width: 100%; height: 100%;
+    transition: transform 0.7s;
+    transform-style: preserve-3d;
+  }
+  .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+  .flip-face {
+    position: absolute;
+    width: 100%; height: 100%;
+    backface-visibility: hidden;
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .flip-front {
+    background: linear-gradient(135deg, var(--card), var(--card-2));
+  }
+  .flip-front .icon { font-size: 2.5rem; margin-bottom: 8px; }
+  .flip-front .title { font-weight: 600; font-family: 'Space Grotesk', sans-serif; }
+  .flip-front .hint { font-size: 0.75rem; color: var(--text-dim); margin-top: 8px; }
+  .flip-back {
+    background: linear-gradient(135deg, rgba(34,197,94,0.2), rgba(16,185,129,0.15));
+    border-color: rgba(34,197,94,0.3);
+    transform: rotateY(180deg);
+    font-size: 0.88rem;
+    color: var(--text);
+  }
+
+  /* PRÁTICA - DRAG & DROP */
+  .practice-intro {
+    background: rgba(10,14,26,0.5);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .practice-intro h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; margin-bottom: 8px; }
+  .practice-intro p { color: var(--text-dim); font-size: 0.95rem; }
+
+  .drop-zone-wrap {
+    background: rgba(10,14,26,0.5);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .drop-zone-wrap .dz-label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .drop-zones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    min-height: 70px;
+  }
+  .drop-zone {
+    min-width: 100px;
+    min-height: 52px;
+    border: 2px dashed var(--border);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    transition: all 0.3s;
+  }
+  .drop-zone.drag-over { border-color: var(--accent); background: rgba(99,102,241,0.1); }
+  .drop-zone.filled { border-style: solid; background: rgba(10,14,26,0.5); color: var(--text); font-weight: 600; }
+  .drop-zone.correct { border-color: var(--success); background: rgba(16,185,129,0.15); color: #86efac; }
+  .drop-zone.wrong { border-color: var(--danger); background: rgba(239,68,68,0.15); color: #fca5a5; animation: shake 0.4s; }
+  .drop-static { font-size: 1.1rem; font-weight: 700; color: var(--text-dim); padding: 0 6px; }
+
+  .draggables {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 16px;
+    background: rgba(10,14,26,0.3);
+    border-radius: 12px;
+    border: 1px dashed var(--border);
+  }
+  .draggable {
+    padding: 10px 18px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: white;
+    border-radius: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    cursor: grab;
+    user-select: none;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(99,102,241,0.3);
+  }
+  .draggable:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(99,102,241,0.5); }
+  .draggable:active { cursor: grabbing; }
+  .draggable.used { opacity: 0.3; pointer-events: none; }
+
+  .practice-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .practice-result {
+    margin-top: 16px;
+    padding: 14px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+    display: none;
+    animation: slideUp 0.4s;
+  }
+  .practice-result.show { display: block; }
+  .practice-result.success { background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); color: var(--success); }
+  .practice-result.error { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: var(--danger); }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* QUIZ */
+  .progress-bar {
+    height: 8px;
+    background: rgba(10,14,26,0.6);
+    border-radius: 100px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--success), var(--accent-3));
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 0 10px rgba(16,185,129,0.5);
+  }
+  .game-screen {
+    background: rgba(10,14,26,0.5);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    min-height: 320px;
+  }
+  .question-num { font-size: 0.75rem; color: var(--accent-3); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+  .question-text { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; line-height: 1.4; }
+  .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+  .option-btn {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    text-align: left;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.93rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .option-btn:hover:not(:disabled) { border-color: var(--accent); background: var(--card-2); transform: translateX(4px); }
+  .option-btn:disabled { cursor: not-allowed; }
+  .option-btn .letter {
+    width: 28px; height: 28px;
+    background: rgba(99,102,241,0.15);
+    color: var(--accent);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-size: 0.85rem;
+  }
+  .option-btn.correct { border-color: var(--success); background: rgba(16,185,129,0.15); animation: correctPulse 0.5s; }
+  .option-btn.correct .letter { background: var(--success); color: white; }
+  .option-btn.wrong { border-color: var(--danger); background: rgba(239,68,68,0.15); animation: shake 0.4s; }
+  .option-btn.wrong .letter { background: var(--danger); color: white; }
+
+  @keyframes correctPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+
+  .feedback { margin-top: 16px; padding: 14px; border-radius: 12px; font-size: 0.92rem; animation: slideUp 0.4s; display: none; }
+  .feedback.show { display: block; }
+  .feedback.success { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: var(--success); }
+  .feedback.error { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: var(--danger); }
+
+  /* TELA FINAL */
+  .game-end { text-align: center; padding: 20px 0; }
+  .game-end .trophy { font-size: 5rem; margin-bottom: 12px; animation: bounce 1s infinite; }
+  @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .game-end h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; margin-bottom: 8px; }
+  .game-end .final-score { font-size: 1rem; color: var(--text-dim); margin-bottom: 20px; }
+  .game-end .final-score strong { color: var(--success); font-size: 1.2rem; }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .badge-item {
+    background: linear-gradient(135deg, var(--card), var(--card-2));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    animation: popIn 0.5s backwards;
+  }
+  .badge-item.earned {
+    border-color: var(--warning);
+    background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(245,158,11,0.1));
+    box-shadow: 0 0 20px rgba(245,158,11,0.3);
+  }
+  .badge-item.earned .b-emoji { filter: drop-shadow(0 0 8px rgba(245,158,11,0.6)); }
+  .badge-item:not(.earned) { opacity: 0.4; filter: grayscale(1); }
+  .badge-item .b-emoji { font-size: 1.5rem; }
+  @keyframes popIn {
+    0% { opacity: 0; transform: scale(0.5); }
+    60% { transform: scale(1.1); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  .demo-footer {
+    margin-top: 20px;
+    padding: 16px;
+    background: rgba(99,102,241,0.08);
+    border: 1px dashed rgba(99,102,241,0.3);
+    border-radius: 12px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 2;
+  }
+  .demo-footer strong { color: var(--accent); }
+
+  /* Confete */
+  .confetti {
+    position: fixed;
+    width: 10px; height: 10px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: fall linear forwards;
+  }
+  @keyframes fall {
+    to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* SERVIÇOS */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .service-card {
+    background: linear-gradient(135deg, var(--card), var(--card-2));
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(99,102,241,0.4);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card.featured {
+    background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.15));
+    border-color: rgba(99,102,241,0.4);
+  }
+  .service-card.featured::before { transform: scaleX(1); }
+
+  .card-category {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(99,102,241,0.15);
+    color: var(--accent);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .card-icon {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+  }
+  .service-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; margin-bottom: 8px; }
+  .service-card .deliverable { color: var(--accent-3); font-weight: 600; font-size: 0.9rem; margin-bottom: 12px; }
+  .service-card .description { color: var(--text-dim); font-size: 0.92rem; margin-bottom: 24px; min-height: 80px; }
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .price { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text); }
+  .price small { font-size: 0.85rem; color: var(--text-dim); font-weight: 400; }
+  .card-cta {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: transform 0.3s;
+  }
+  .card-cta:hover { transform: translateX(4px); }
+  .popular-tag {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: linear-gradient(135deg, var(--accent-3), var(--accent));
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  /* CONTATO */
+  .contact-wrap {
+    background: linear-gradient(135deg, var(--card), var(--card-2));
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-wrap::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(99,102,241,0.1), transparent 50%);
+    animation: rotate 30s linear infinite;
+  }
+  @keyframes rotate { to { transform: rotate(360deg); } }
+  .contact-wrap > * { position: relative; z-index: 1; }
+  .contact-wrap h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 16px; }
+  .contact-wrap p { color: var(--text-dim); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .contact-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+  .btn-whats { background: #25d366; color: white; font-size: 1.05rem; padding: 16px 32px; }
+  .btn-whats:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(37,211,102,0.4); }
+  .contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .info-item { display: flex; align-items: center; gap: 10px; color: var(--text-dim); font-size: 0.95rem; }
+  .info-item strong { color: var(--text); }
+
+  footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim); font-size: 0.9rem; }
+
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .menu-toggle { display: block; }
+    .nav-links.active {
+      display: flex;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      flex-direction: column;
+      background: var(--bg-2);
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-visual { max-width: 300px; margin: 0 auto; }
+    .contact-wrap { padding: 40px 24px; }
+    .contact-wrap h2 { font-size: 2rem; }
+    section { padding: 70px 0; }
+    .demo-wrap { padding: 20px; }
+    .game-screen { padding: 20px; }
+    .demo-stats { width: 100%; justify-content: space-around; }
+    .tab { font-size: 0.8rem; padding: 10px 8px; min-width: auto; }
+    .plant { font-size: 4rem; }
+    .sun { width: 50px; height: 50px; top: 15px; right: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-blur b1"></div>
+<div class="bg-blur b2"></div>
+<div class="bg-blur b3"></div>
+
+<nav>
+  <div class="container nav-wrap">
+    <div class="logo">JA<span style="color:var(--accent-3)">.</span></div>
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">☰</button>
+    <ul class="nav-links">
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#demo">Demo</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero" id="inicio">
+  <div class="container">
+    <div class="hero-content">
+      <div class="badge"><span class="dot"></span> Disponível para projetos</div>
+      <h1>Transformando <span class="gradient">educação</span> com tecnologia e <span class="gradient">IA</span></h1>
+      <p>Sou Jó Adrian, engenheiro eletricista e criador de soluções didáticas interativas. Desenvolvo materiais gamificados, kits de estudo completos e ministro workshops de IA para professores que querem inovar em sala de aula.</p>
+      <div class="hero-buttons">
+        <a href="#demo" class="btn btn-primary">🎮 Testar Demo Completa</a>
+        <a href="#servicos" class="btn btn-ghost">Ver Soluções</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat-item"><div class="num">HTML</div><div class="label">Mini-sites interativos</div></div>
+        <div class="stat-item"><div class="num">IA</div><div class="label">Aplicada à educação</div></div>
+        <div class="stat-item"><div class="num">360º</div><div class="label">Kits completos</div></div>
+        <div class="stat-item"><div class="num">100%</div><div class="label">Offline & acessível</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEMO SUPREMA ===== -->
+<section id="demo">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">🎮 Experiência completa</div>
+      <h2>Módulo Interativo: Fotossíntese</h2>
+      <p>Navegue pelas abas abaixo e veja na prática como funciona um material didático completo — com teoria animada, prática gamificada e avaliação.</p>
+    </div>
+
+    <div class="demo-wrap reveal">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span class="emoji">🌱</span>
+          <div>
+            <h3>Fotossíntese · Módulo 01</h3>
+            <small>Biologia · 1º Ano do Ensino Médio</small>
+          </div>
+        </div>
+        <div class="demo-stats">
+          <div class="demo-stat"><div class="lbl">XP</div><div class="val" id="xp">0</div></div>
+          <div class="demo-stat"><div class="lbl">Nível</div><div class="val" id="level">1</div></div>
+        </div>
+      </div>
+
+      <!-- ABAS -->
+      <div class="tabs">
+        <button class="tab active" data-tab="theory">📖 Teoria <span class="check" id="check-theory" style="display:none">✓</span></button>
+        <button class="tab" data-tab="practice">🧩 Prática <span class="check" id="check-practice" style="display:none">✓</span></button>
+        <button class="tab" data-tab="quiz">🎯 Quiz <span class="check" id="check-quiz" style="display:none">✓</span></button>
+      </div>
+
+      <!-- TEORIA -->
+      <div class="tab-content active" id="tab-theory">
+        <div class="theory-intro">
+          <h4>🌿 O que é Fotossíntese?</h4>
+          <p>A <strong>fotossíntese</strong> é o processo pelo qual as plantas, algas e algumas bactérias transformam <strong>luz solar</strong>, <strong>gás carbônico (CO₂)</strong> e <strong>água (H₂O)</strong> em <strong>glicose</strong> (alimento) e <strong>oxigênio</strong> (O₂).</p>
+          <p>Esse processo ocorre nos <strong>cloroplastos</strong>, graças ao pigmento verde chamado <strong>clorofila</strong>. É através dela que a vida na Terra como conhecemos é possível! 🌍</p>
+        </div>
+
+        <!-- CENA ANIMADA -->
+        <div class="scene">
+          <div class="sun"></div>
+          <div class="sun-rays"></div>
+          <div class="sun-rays"></div>
+          <div class="sun-rays"></div>
+          <div class="plant">🌿</div>
+          <div class="molecule mol-co2">CO₂</div>
+          <div class="molecule mol-h2o">H₂O</div>
+          <div class="molecule mol-o2">O₂</div>
+          <div class="molecule mol-glucose">C₆H₁₂O₆</div>
+          <div class="scene-label">🎬 Animação: observe as moléculas entrando e saindo</div>
+        </div>
+
+        <!-- EQUAÇÃO -->
+        <div class="equation-display">
+          <div class="eq-label">⚗️ Equação Química</div>
+          <div class="equation">
+            <span class="eq-part reagent">6 CO₂</span>
+            <span class="eq-plus">+</span>
+            <span class="eq-part reagent">6 H₂O</span>
+            <span class="eq-arrow">—☀️→</span>
+            <span class="eq-part product">C₆H₁₂O₆</span>
+            <span class="eq-plus">+</span>
+            <span class="eq-part product">6 O₂</span>
+          </div>
+        </div>
+
+        <!-- CURIOSIDADES FLIP -->
+        <h4 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; margin: 24px 0 12px; color: var(--text);">💡 Clique pra revelar curiosidades</h4>
+        <div class="curiosities">
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <div class="icon">🌊</div>
+                <div class="title">Oxigênio dos oceanos</div>
+                <div class="hint">Clique pra ver</div>
+              </div>
+              <div class="flip-face flip-back">Cerca de <strong>70%</strong> do O₂ que respiramos vem de algas marinhas, não das florestas!</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <div class="icon">🎨</div>
+                <div class="title">Por que verde?</div>
+                <div class="hint">Clique pra ver</div>
+              </div>
+              <div class="flip-face flip-back">A clorofila <strong>absorve</strong> luz azul e vermelha, e <strong>reflete</strong> a verde. Por isso vemos as plantas verdes!</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <div class="icon">⚡</div>
+                <div class="title">Fase clara e escura</div>
+                <div class="hint">Clique pra ver</div>
+              </div>
+              <div class="flip-face flip-back">A fotossíntese tem <strong>2 etapas</strong>: fase fotoquímica (com luz) e fase de fixação do carbono (Ciclo de Calvin).</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <div class="icon">🔬</div>
+                <div class="title">Cloroplasto</div>
+                <div class="hint">Clique pra ver</div>
+              </div>
+              <div class="flip-face flip-back">Uma única célula vegetal pode ter de <strong>20 a 100 cloroplastos</strong>. Fábricas minúsculas de energia!</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 24px;">
+          <button class="btn btn-primary" onclick="completeTheory()">✓ Concluir Teoria & Ir pra Prática</button>
+        </div>
+      </div>
+
+      <!-- PRÁTICA -->
+      <div class="tab-content" id="tab-practice">
+        <div class="practice-intro">
+          <h4>🧩 Monte a Equação da Fotossíntese</h4>
+          <p>Arraste os elementos abaixo para as caixas corretas e complete a equação química.</p>
+        </div>
+
+        <div class="drop-zone-wrap">
+          <div class="dz-label">Arraste os elementos para completar ⬇️</div>
+          <div class="drop-zones">
+            <div class="drop-zone" data-answer="6 CO₂" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropItem(event)">?</div>
+            <span class="drop-static">+</span>
+            <div class="drop-zone" data-answer="6 H₂O" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropItem(event)">?</div>
+            <span class="drop-static">→</span>
+            <div class="drop-zone" data-answer="C₆H₁₂O₆" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropItem(event)">?</div>
+            <span class="drop-static">+</span>
+            <div class="drop-zone" data-answer="6 O₂" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropItem(event)">?</div>
+          </div>
+
+          <div class="draggables" id="draggables">
+            <div class="draggable" draggable="true" ondragstart="dragStart(event)" data-value="C₆H₁₂O₆">C₆H₁₂O₆</div>
+            <div class="draggable" draggable="true" ondragstart="dragStart(event)" data-value="6 O₂">6 O₂</div>
+            <div class="draggable" draggable="true" ondragstart="dragStart(event)" data-value="6 CO₂">6 CO₂</div>
+            <div class="draggable" draggable="true" ondragstart="dragStart(event)" data-value="6 H₂O">6 H₂O</div>
+          </div>
+        </div>
+
+        <div class="practice-result" id="practiceResult"></div>
+
+        <div class="practice-actions">
+          <button class="btn btn-ghost" onclick="resetPractice()">🔄 Tentar de novo</button>
+          <button class="btn btn-primary" onclick="checkPractice()">✓ Verificar resposta</button>
+        </div>
+      </div>
+
+      <!-- QUIZ -->
+      <div class="tab-content" id="tab-quiz">
+        <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+        <div class="game-screen" id="gameScreen"></div>
+      </div>
+
+      <div class="demo-footer">
+        💡 <strong>É só uma amostra!</strong> Os módulos completos têm ainda mais conteúdo, áudios, resumos em PDF e mapas mentais. Quer um assim pro seu tema?
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="container">
+    <div class="about-grid reveal">
+      <div class="about-visual"><span>👨‍🏫</span></div>
+      <div class="about-text">
+        <div class="section-tag">Sobre mim</div>
+        <h3>Engenharia elétrica + paixão por ensinar</h3>
+        <p>Me chamo <strong>Jó Adrian de Souza Ferreira</strong>, engenheiro eletricista com uma missão clara: usar tecnologia e Inteligência Artificial para tornar o aprendizado mais dinâmico, visual e eficiente.</p>
+        <p>Crio materiais didáticos interativos que funcionam em qualquer dispositivo, mesmo offline. Combino rigor técnico com criatividade pedagógica para entregar soluções que realmente engajam alunos e facilitam a vida do professor.</p>
+        <div class="skills">
+          <span class="skill">HTML Interativo</span>
+          <span class="skill">NotebookLM</span>
+          <span class="skill">IA Generativa</span>
+          <span class="skill">Gamificação</span>
+          <span class="skill">Mapas Mentais</span>
+          <span class="skill">Didática Digital</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="servicos">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">Soluções</div>
+      <h2>Educação Interativa & IA</h2>
+      <p>Do módulo individual ao pacote bimestral completo — escolha a solução ideal para suas aulas.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="card-category">Individual</span>
+        <div class="card-icon">📱</div>
+        <h3>Módulo Interativo</h3>
+        <div class="deliverable">1 Arquivo HTML único</div>
+        <p class="description">Um "mini-site" que funciona offline em qualquer celular/PC, contendo teoria, botões interativos e desafios gamificados sobre o tema escolhido.</p>
+        <div class="card-footer">
+          <div class="price">R$ 50<small>,00</small></div>
+          <a href="#contato" class="card-cta">Contratar →</a>
+        </div>
+      </div>
+
+      <div class="service-card featured reveal">
+        <span class="popular-tag">⭐ POPULAR</span>
+        <span class="card-category">Combo</span>
+        <div class="card-icon">🎯</div>
+        <h3>Kit Estudo 360º</h3>
+        <div class="deliverable">HTML + Resumo + Mapa</div>
+        <p class="description">O arquivo interativo acompanhado de um Resumo Teórico PDF (gerado via NotebookLM) e um Mapa Mental Visual para facilitar a memorização do aluno.</p>
+        <div class="card-footer">
+          <div class="price">R$ 90<small>,00</small></div>
+          <a href="#contato" class="card-cta">Contratar →</a>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="card-category">Volume</span>
+        <div class="card-icon">📚</div>
+        <h3>Pacote Bimestral</h3>
+        <div class="deliverable">5 Kits Estudo 360º</div>
+        <p class="description">Uma sequência didática completa para um bimestre inteiro. Todos os temas com HTML, Resumo e Mapa Mental prontos para aplicar.</p>
+        <div class="card-footer">
+          <div class="price">R$ 350<small> a R$ 400</small></div>
+          <a href="#contato" class="card-cta">Contratar →</a>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="card-category">Treinamento</span>
+        <div class="card-icon">🎤</div>
+        <h3>Workshop IA p/ Docentes</h3>
+        <div class="deliverable">Palestra Prática (1h30)</div>
+        <p class="description">Ensino os professores a usarem IA para criar esses materiais. <strong style="color:var(--text)">Bônus:</strong> Demonstração de como gerar Podcasts e Audiobooks didáticos com NotebookLM.</p>
+        <div class="card-footer">
+          <div class="price">R$ 600<small> a R$ 900</small></div>
+          <a href="#contato" class="card-cta">Contratar →</a>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="card-category">Consultoria</span>
+        <div class="card-icon">💡</div>
+        <h3>Mentoria Particular</h3>
+        <div class="deliverable">Aula de 1h via Meet/Zoom</div>
+        <p class="description">Ajudo o professor a transformar um conteúdo específico dele em um material interativo, tirando dúvidas técnicas em tempo real.</p>
+        <div class="card-footer">
+          <div class="price">R$ 150<small>,00</small></div>
+          <a href="#contato" class="card-cta">Contratar →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="container">
+    <div class="contact-wrap reveal">
+      <div class="section-tag">Vamos conversar</div>
+      <h2>Pronto pra inovar nas suas aulas?</h2>
+      <p>Me chame no WhatsApp e vamos construir juntos um material didático que seus alunos vão amar.</p>
+
+      <div class="contact-buttons">
+        <a href="https://wa.me/5584999279750?text=Ol%C3%A1%20J%C3%B3!%20Vi%20seu%20portif%C3%B3lio%20e%20quero%20saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es." target="_blank" class="btn btn-whats">
+          💬 Chamar no WhatsApp
+        </a>
+      </div>
+
+      <div class="contact-info">
+        <div class="info-item">📱 <strong>(84) 99927-9750</strong></div>
+        <div class="info-item">📍 <strong>Campo Redondo, RN</strong></div>
+        <div class="info-item">⚡ <strong>Engenheiro Eletricista</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © 2026 <strong style="color:var(--text)">Jó Adrian de Souza Ferreira</strong> — Educação Interativa & IA. Feito com 💜 e café.
+  </div>
+</footer>
+
+<script>
+  // ===== REVEAL ON SCROLL =====
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.background = window.scrollY > 50 ? 'rgba(10,14,26,0.9)' : 'rgba(10,14,26,0.7)';
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.remove('active');
+    });
+  });
+
+  // ===== GAMIFICAÇÃO GLOBAL =====
+  let xp = 0;
+  let level = 1;
+  const achievements = {
+    theory: false,
+    practice: false,
+    quiz: false,
+    perfectQuiz: false
+  };
+
+  function addXP(amount) {
+    const target = xp + amount;
+    const xpEl = document.getElementById('xp');
+    const start = xp;
+    const duration = 800;
+    const startTime = performance.now();
+    
+    function update(now) {
+      const elapsed = now - startTime;
+      const prog = Math.min(elapsed / duration, 1);
+      xpEl.textContent = Math.floor(start + (target - start) * prog);
+      if (prog < 1) requestAnimationFrame(update);
+      else {
+        xp = target;
+        const newLevel = Math.floor(xp / 50) + 1;
+        if (newLevel > level) {
+          level = newLevel;
+          document.getElementById('level').textContent = level;
+          launchConfetti();
+        }
+      }
+    }
+    requestAnimationFrame(update);
+  }
+
+  function launchConfetti() {
+    const colors = ['#6366f1', '#8b5cf6', '#06b6d4', '#10b981', '#fbbf24', '#ef4444'];
+    for (let i = 0; i < 60; i++) {
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = Math.random() * 100 + 'vw';
+      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+      c.style.animationDuration = (Math.random() * 2 + 2) + 's';
+      c.style.animationDelay = Math.random() * 0.3 + 's';
+      document.body.appendChild(c);
+      setTimeout(() => c.remove(), 4500);
+    }
+  }
+
+  // ===== ABAS =====
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('tab-' + target).classList.add('active');
+    });
+  });
+
+  // ===== TEORIA =====
+  function completeTheory() {
+    if (!achievements.theory) {
+      achievements.theory = true;
+      document.getElementById('check-theory').style.display = 'inline';
+      addXP(20);
+    }
+    document.querySelector('.tab[data-tab="practice"]').click();
+  }
+
+  // ===== DRAG & DROP =====
+  let draggedEl = null;
+
+  function dragStart(e) {
+    draggedEl = e.target;
+    e.dataTransfer.effectAllowed = 'move';
+  }
+
+  function dragOver(e) {
+    e.preventDefault();
+    e.currentTarget.classList.add('drag-over');
+  }
+
+  function dragLeave(e) {
+    e.currentTarget.classList.remove('drag-over');
+  }
+
+  function dropItem(e) {
+    e.preventDefault();
+    const zone = e.currentTarget;
+    zone.classList.remove('drag-over');
+    if (!draggedEl) return;
+    
+    // Se já tem algo, devolve pro pool
+    if (zone.classList.contains('filled')) {
+      const prev = zone.textContent;
+      const draggables = document.querySelectorAll('.draggable');
+      draggables.forEach(d => {
+        if (d.dataset.value === prev) d.classList.remove('used');
+      });
+    }
+    
+    zone.textContent = draggedEl.dataset.value;
+    zone.classList.add('filled');
+    zone.classList.remove('correct', 'wrong');
+    draggedEl.classList.add('used');
+    draggedEl = null;
+  }
+
+  // Touch support simples (click to select + click to place)
+  let selectedMobile = null;
+  document.querySelectorAll('.draggable').forEach(d => {
+    d.addEventListener('click', () => {
+      if (d.classList.contains('used')) return;
+      document.querySelectorAll('.draggable').forEach(x => x.style.outline = '');
+      d.style.outline = '3px solid var(--accent-3)';
+      selectedMobile = d;
+    });
+  });
+  document.querySelectorAll('.drop-zone').forEach(z => {
+    z.addEventListener('click', () => {
+      if (!selectedMobile) return;
+      if (z.classList.contains('filled')) {
+        const prev = z.textContent;
+        document.querySelectorAll('.draggable').forEach(d => {
+          if (d.dataset.value === prev) d.classList.remove('used');
+        });
+      }
+      z.textContent = selectedMobile.dataset.value;
+      z.classList.add('filled');
+      z.classList.remove('correct', 'wrong');
+      selectedMobile.classList.add('used');
+      selectedMobile.style.outline = '';
+      selectedMobile = null;
+    });
+  });
+
+  function checkPractice() {
+    const zones = document.querySelectorAll('.drop-zone');
+    let correctCount = 0;
+    let allFilled = true;
+    
+    zones.forEach(z => {
+      if (!z.classList.contains('filled')) allFilled = false;
+      if (z.textContent.trim() === z.dataset.answer) {
+        z.classList.add('correct');
+        z.classList.remove('wrong');
+        correctCount++;
+      } else if (z.classList.contains('filled')) {
+        z.classList.add('wrong');
+        z.classList.remove('correct');
+      }
+    });
+    
+    const result = document.getElementById('practiceResult');
+    if (!allFilled) {
+      result.className = 'practice-result error show';
+      result.textContent = '⚠️ Preencha todas as caixas antes de verificar!';
+      return;
+    }
+    
+    if (correctCount === zones.length) {
+      result.className = 'practice-result success show';
+      result.innerHTML = '🎉 <strong>Perfeito!</strong> Equação montada corretamente! +30 XP';
+      if (!achievements.practice) {
+        achievements.practice = true;
+        document.getElementById('check-practice').style.display = 'inline';
+        addXP(30);
+        launchConfetti();
+      }
+    } else {
+      result.className = 'practice-result error show';
+      result.innerHTML = `❌ Você acertou ${correctCount} de ${zones.length}. Revise e tente de novo!`;
+    }
+  }
+
+  function resetPractice() {
+    document.querySelectorAll('.drop-zone').forEach(z => {
+      z.textContent = '?';
+      z.classList.remove('filled', 'correct', 'wrong');
+    });
+    document.querySelectorAll('.draggable').forEach(d => {
+      d.classList.remove('used');
+      d.style.outline = '';
+    });
+    document.getElementById('practiceResult').classList.remove('show');
+    selectedMobile = null;
+  }
+
+  // ===== QUIZ =====
+  const questions = [
+    {
+      q: "Qual é a principal função da fotossíntese nas plantas?",
+      options: ["Eliminar gás carbônico e produzir energia luminosa", "Produzir glicose e oxigênio usando luz solar", "Absorver oxigênio e liberar gás carbônico", "Transformar minerais do solo em água"],
+      correct: 1,
+      explain: "A fotossíntese usa luz solar, CO₂ e água para produzir glicose (alimento) e liberar O₂."
+    },
+    {
+      q: "Em qual organela da célula vegetal ocorre a fotossíntese?",
+      options: ["Mitocôndria", "Núcleo", "Cloroplasto", "Ribossomo"],
+      correct: 2,
+      explain: "Os cloroplastos contêm clorofila, o pigmento verde que capta a luz solar."
+    },
+    {
+      q: "Qual gás é LIBERADO como produto da fotossíntese?",
+      options: ["Gás carbônico (CO₂)", "Nitrogênio (N₂)", "Hidrogênio (H₂)", "Oxigênio (O₂)"],
+      correct: 3,
+      explain: "O O₂ que respiramos vem majoritariamente da fotossíntese das plantas e algas."
+    },
+    {
+      q: "Por que as folhas são verdes?",
+      options: ["Porque absorvem a luz verde", "Porque refletem a luz verde (a clorofila absorve outras cores)", "Porque produzem tinta verde", "Por causa da água armazenada nelas"],
+      correct: 1,
+      explain: "A clorofila absorve azul e vermelho, refletindo a luz verde — por isso as vemos assim."
+    },
+    {
+      q: "A equação geral da fotossíntese é:",
+      options: ["6CO₂ + 6H₂O + luz → C₆H₁₂O₆ + 6O₂", "C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O", "2H₂ + O₂ → 2H₂O", "N₂ + 3H₂ → 2NH₃"],
+      correct: 0,
+      explain: "Seis CO₂ + seis H₂O + luz = glicose + oxigênio. Essa é a equação clássica!"
+    }
+  ];
+
+  let current = 0;
+  let score = 0;
+  let hits = 0;
+  const gameScreen = document.getElementById('gameScreen');
+  const progressEl = document.getElementById('progress');
+
+  function renderQuestion() {
+    const q = questions[current];
+    const letters = ['A', 'B', 'C', 'D'];
+    gameScreen.innerHTML = `
+      <div class="question-num">Pergunta ${current + 1} de ${questions.length}</div>
+      <div class="question-text">${q.q}</div>
+      <div class="options-grid">
+        ${q.options.map((opt, i) => `
+          <button class="option-btn" onclick="answer(${i})">
+            <span class="letter">${letters[i]}</span>
+            <span>${opt}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="feedback" id="feedback"></div>
+    `;
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const pct = (current / questions.length) * 100;
+    progressEl.style.width = pct + '%';
+  }
+
+  window.answer = function(idx) {
+    const q = questions[current];
+    const buttons = document.querySelectorAll('.option-btn');
+    const feedback = document.getElementById('feedback');
+    buttons.forEach(b => b.disabled = true);
+
+    if (idx === q.correct) {
+      buttons[idx].classList.add('correct');
+      score += 10;
+      hits++;
+      feedback.className = 'feedback success show';
+      feedback.innerHTML = '✅ <strong>Correto!</strong> ' + q.explain;
+      addXP(10);
+    } else {
+      buttons[idx].classList.add('wrong');
+      buttons[q.correct].classList.add('correct');
+      feedback.className = 'feedback error show';
+      feedback.innerHTML = '❌ <strong>Quase lá!</strong> ' + q.explain;
+    }
+
+    setTimeout(() => {
+      current++;
+      if (current < questions.length) renderQuestion();
+      else endGame();
+    }, 2200);
+  }
+
+  function endGame() {
+    progressEl.style.width = '100%';
+    if (!achievements.quiz) {
+      achievements.quiz = true;
+      document.getElementById('check-quiz').style.display = 'inline';
+    }
+    if (hits === questions.length && !achievements.perfectQuiz) {
+      achievements.perfectQuiz = true;
+      addXP(20);
+      launchConfetti();
+    }
+
+    let msg, emoji;
+    if (hits === questions.length) { emoji = '🏆'; msg = 'Perfeito! Mestre da Fotossíntese!'; }
+    else if (hits >= 3) { emoji = '🎉'; msg = 'Muito bem! Mandou super bem!'; }
+    else { emoji = '💪'; msg = 'Bom esforço! Bora revisar e tentar de novo?'; }
+
+    const badges = [
+      { id: 'theory', emoji: '📖', name: 'Leitor Atento', desc: 'Completou a teoria' },
+      { id: 'practice', emoji: '🧩', name: 'Quebra-Cabeça', desc: 'Montou a equação' },
+      { id: 'quiz', emoji: '🎯', name: 'Finalizador', desc: 'Terminou o quiz' },
+      { id: 'perfectQuiz', emoji: '⭐', name: 'Nota 10', desc: 'Acertou tudo!' }
+    ];
+
+    gameScreen.innerHTML = `
+      <div class="game-end">
+        <div class="trophy">${emoji}</div>
+        <h3>${msg}</h3>
+        <div class="final-score">Pontuação: <strong>${score} pontos</strong> · ${hits}/${questions.length} acertos</div>
+        <div class="badges">
+          ${badges.map((b, i) => `
+            <div class="badge-item ${achievements[b.id] ? 'earned' : ''}" style="animation-delay: ${i * 0.15}s">
+              <span class="b-emoji">${b.emoji}</span>
+              <div style="text-align:left">
+                <div style="font-weight:700">${b.name}</div>
+                <div style="font-size:0.75rem; color:var(--text-dim)">${b.desc}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <button class="btn btn-primary" onclick="restartGame()">🔄 Jogar Novamente</button>
+      </div>
+    `;
+  }
+
+  window.restartGame = function() {
+    current = 0;
+    score = 0;
+    hits = 0;
+    renderQuestion();
+  }
+
+  renderQuestion();
+</script>
+
+</body>
+</html>
