@@ -30,13 +30,14 @@
     --kiwify: #00D37E;
   }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
   body {
     font-family: 'Inter', sans-serif;
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
     overflow-x: hidden;
+    width: 100%;
   }
 
   .bg-blur {
@@ -57,7 +58,7 @@
     50% { transform: translate(50px, 80px) scale(1.15); }
   }
 
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; width: 100%; }
 
   /* NAV */
   nav {
@@ -92,7 +93,7 @@
   .hero p { font-size: 1.15rem; color: var(--text-dim); margin-bottom: 32px; max-width: 600px; }
   .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
 
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 12px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-family: inherit; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; border-radius: 12px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-family: inherit; }
   .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white; box-shadow: 0 8px 24px rgba(99,102,241,0.3); }
   .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(99,102,241,0.5); }
   .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
@@ -109,31 +110,36 @@
   .section-header p { color: var(--text-dim); max-width: 600px; margin: 0 auto; font-size: 1.05rem; }
 
   /* ========== SEÇÃO E-BOOK ========== */
-  .ebook-section { background: linear-gradient(135deg, rgba(99,102,241,0.05), rgba(139,92,246,0.05)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
-  .ebook-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .ebook-section { background: linear-gradient(135deg, rgba(99,102,241,0.05), rgba(139,92,246,0.05)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; width: 100%; }
+  
+  /* A MÁGICA CONTRA O GRID BLOWOUT ESTÁ AQUI: minmax(0, 1fr) */
+  .ebook-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 60px; align-items: center; width: 100%; }
+  
   .ebook-text h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.1; margin-bottom: 8px; background: linear-gradient(135deg, #fff, var(--text-dim)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .ebook-subtitle { font-size: 1.2rem; color: var(--accent-3); font-weight: 600; margin-bottom: 24px; }
   .ebook-info-tags { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
   .info-tag { background: var(--card); border: 1px solid var(--border); padding: 6px 14px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: var(--text); }
-  .ebook-benefits { list-style: none; margin-bottom: 32px; }
+  
+  .ebook-benefits { list-style: none; margin-bottom: 32px; width: 100%; }
   .ebook-benefits li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 1.05rem; color: var(--text-dim); }
   .ebook-benefits .check-icon { background: rgba(16,185,129,0.2); color: var(--success); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold; flex-shrink: 0; margin-top: 2px; }
+  .benefit-text { flex: 1; } /* Garante que o texto se adapte sem empurrar o layout */
   
-  .ebook-price-wrap { background: rgba(10,14,26,0.6); border: 1px solid var(--border); padding: 24px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .ebook-price-wrap { background: rgba(10,14,26,0.6); border: 1px solid var(--border); padding: 24px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; width: 100%; box-sizing: border-box; }
   .ebook-price-wrap .price-title { font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
   .ebook-price { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 800; color: white; line-height: 1; }
-  .btn-kiwify { background: linear-gradient(135deg, var(--kiwify), #00a863); color: #fff; box-shadow: 0 8px 24px rgba(0, 211, 126, 0.4); font-size: 1.1rem; padding: 16px 32px; position: relative; overflow: hidden; display: inline-flex; align-items: center; }
+  .btn-kiwify { background: linear-gradient(135deg, var(--kiwify), #00a863); color: #fff; box-shadow: 0 8px 24px rgba(0, 211, 126, 0.4); font-size: 1.1rem; padding: 16px 32px; position: relative; overflow: hidden; display: inline-flex; align-items: center; text-align: center; }
   .btn-kiwify::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: shine 3s infinite; }
   @keyframes shine { 100% { left: 200%; } }
   .btn-kiwify:hover { transform: scale(1.05); box-shadow: 0 12px 32px rgba(0, 211, 126, 0.6); }
 
-  .ebook-visual { display: flex; flex-direction: column; gap: 20px; }
-  .ebook-cover-wrapper { position: relative; border-radius: 16px; padding: 20px; background: linear-gradient(135deg, var(--card), var(--bg)); border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.5); text-align: center; }
+  .ebook-visual { display: flex; flex-direction: column; gap: 20px; min-width: 0; width: 100%; }
+  .ebook-cover-wrapper { position: relative; border-radius: 16px; padding: 20px; background: linear-gradient(135deg, var(--card), var(--bg)); border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.5); text-align: center; width: 100%; }
   .ebook-cover-wrapper img { max-width: 100%; border-radius: 8px; transition: transform 0.3s; max-height: 400px; object-fit: contain;}
   .ebook-cover-wrapper:hover img { transform: scale(1.02); }
   
   /* Carousel de Previews CSS Sofisticado */
-  .preview-carousel { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: thin; scrollbar-color: var(--accent) var(--bg); }
+  .preview-carousel { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: thin; scrollbar-color: var(--accent) var(--bg); max-width: 100%; }
   .preview-carousel::-webkit-scrollbar { height: 6px; }
   .preview-carousel::-webkit-scrollbar-track { background: var(--bg); border-radius: 10px; }
   .preview-carousel::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
@@ -379,7 +385,7 @@
   .chem-info span { color: var(--accent-3); font-weight: bold; }
 
   /* SOBRE */
-  .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: center; }
+  .about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 60px; align-items: center; }
   .about-visual { aspect-ratio: 1; background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(139,92,246,0.2)); border: 1px solid var(--border); border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 8rem; position: relative; overflow: hidden; }
   .about-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 30%, rgba(99,102,241,0.3), transparent 60%); }
   .about-visual span { position: relative; z-index: 1; }
@@ -433,22 +439,27 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* =======================================================
-     MEDIA QUERIES & MOBILE FIRST (CORREÇÕES INJETADAS AQUI)
+     MEDIA QUERIES - MOBILE COM TRAVA DE GRID
      ======================================================= */
   @media (max-width: 768px) {
     .nav-links { display: none; }
     .menu-toggle { display: block; }
     .nav-links.active { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--bg-2); padding: 20px; border-bottom: 1px solid var(--border); }
-    .ebook-grid, .about-grid { grid-template-columns: 1fr; gap: 40px; }
     
-    /* CORREÇÕES DA SEÇÃO DO E-BOOK (MOBILE) */
-    .ebook-text { text-align: center; display: flex; flex-direction: column; align-items: center; }
-    .ebook-text h2 { font-size: 2.2rem; }
+    /* O minmax(0, 1fr) aqui garante que a coluna nunca vaze da tela */
+    .ebook-grid, .about-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; width: 100%; }
+    
+    .ebook-text { text-align: center; width: 100%; display: block; }
+    .ebook-text h2 { font-size: 2.1rem; line-height: 1.2; padding: 0 10px; }
     .ebook-info-tags { justify-content: center; }
-    .ebook-benefits { text-align: left; width: 100%; max-width: 400px; margin-left: auto; margin-right: auto; }
-    .ebook-price-wrap { flex-direction: column; text-align: center; width: 100%; gap: 20px; padding: 20px; }
-    .btn-kiwify { width: 100%; max-width: 320px; justify-content: center; padding: 16px 20px; font-size: 1.1rem; margin: 0 auto; }
-    .ebook-cover-wrapper img { max-height: 280px; }
+    
+    /* Benefícios 100% contidos */
+    .ebook-benefits { text-align: left; width: 100%; padding: 0 15px; }
+    .ebook-benefits li { display: flex; text-align: left; }
+    
+    .ebook-price-wrap { flex-direction: column; text-align: center; width: 100%; gap: 20px; padding: 24px; box-sizing: border-box; }
+    .btn-kiwify { width: 100%; max-width: 100%; justify-content: center; padding: 18px 10px; font-size: 1.1rem; }
+    .ebook-cover-wrapper img { max-height: 280px; width: 100%; }
     
     .contact-wrap { padding: 40px 24px; }
     .contact-wrap h2 { font-size: 2rem; }
@@ -516,9 +527,19 @@
         </div>
 
         <ul class="ebook-benefits">
-          <li><span class="check-icon">✓</span> <strong>Crie rápido:</strong> Gere um material interativo completo (quiz, flashcards, exercícios) em um único arquivo HTML usando IA.</li>
-          <li><span class="check-icon">✓</span> <strong>Teste na hora:</strong> Aprenda a abrir e testar direto no navegador com o Live Server de forma extremamente simples.</li>
-          <li><span class="check-icon">✓</span> <strong>Publique de graça:</strong> Suba para o GitHub Pages e tenha um link profissional pronto para enviar aos seus alunos.</li>
+          <li>
+            <span class="check-icon">✓</span> 
+            <!-- A DIV ABAIXO FAZ TODA A DIFERENÇA PRO TEXTO NÃO QUEBRAR -->
+            <div class="benefit-text"><strong>Crie rápido:</strong> Gere um material interativo completo (quiz, flashcards, exercícios) em um único arquivo HTML usando IA.</div>
+          </li>
+          <li>
+            <span class="check-icon">✓</span> 
+            <div class="benefit-text"><strong>Teste na hora:</strong> Aprenda a abrir e testar direto no navegador com o Live Server de forma extremamente simples.</div>
+          </li>
+          <li>
+            <span class="check-icon">✓</span> 
+            <div class="benefit-text"><strong>Publique de graça:</strong> Suba para o GitHub Pages e tenha um link profissional pronto para enviar aos seus alunos.</div>
+          </li>
         </ul>
 
         <div class="ebook-price-wrap">
@@ -535,9 +556,9 @@
       <div class="ebook-visual reveal">
          <div class="ebook-cover-wrapper">
             <!-- IMAGEM DA CAPA -->
-            <img src="logo.png" alt="Capa do Ebook: Materiais Didáticos Interativos com IA" onerror="this.src='https://via.placeholder.com/400x500/1a2035/6366f1?text=Capa+do+Ebook';"/>
+            <img src="logo.png" alt="Capa do Ebook" onerror="this.src='https://via.placeholder.com/400x500/1a2035/6366f1?text=Capa+do+Ebook';"/>
          </div>
-         <p style="text-align:center; font-size:0.85rem; color:var(--text-dim); margin-top:-10px;">Arraste para ver um pouco do conteúdo por dentro 👇</p>
+         <p style="text-align:center; font-size:0.85rem; color:var(--text-dim); margin-top:-10px;">Arraste para ver um pouco do conteúdo 👇</p>
          
          <div class="preview-carousel">
             <div class="preview-card">
@@ -561,7 +582,7 @@
               </div>
             </div>
             <div class="preview-card">
-              <div class="preview-title">Publicação (GitHub)</div>
+              <div class="preview-title">Publicação GitHub</div>
               <div class="css-ill-code" style="align-items: center; justify-content: center;">
                 <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">🚀</div>
               </div>
