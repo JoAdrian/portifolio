@@ -27,6 +27,7 @@
     --plant: #22c55e;
     --sun: #fbbf24;
     --water: #3b82f6;
+    --kiwify: #00D37E;
   }
 
   html { scroll-behavior: smooth; }
@@ -56,685 +57,251 @@
     50% { transform: translate(50px, 80px) scale(1.15); }
   }
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-    position: relative;
-    z-index: 1;
-  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
 
   /* NAV */
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    backdrop-filter: blur(20px);
-    background: rgba(10,14,26,0.7);
-    border-bottom: 1px solid var(--border);
-    padding: 16px 0;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    backdrop-filter: blur(20px); background: rgba(10,14,26,0.7);
+    border-bottom: 1px solid var(--border); padding: 16px 0;
   }
   .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
   .logo {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 1.25rem;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.25rem;
     background: linear-gradient(135deg, var(--accent), var(--accent-3));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
   }
   .nav-links { display: flex; gap: 32px; list-style: none; }
-  .nav-links a {
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: color 0.3s;
-  }
+  .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
   .nav-links a:hover { color: var(--text); }
   .menu-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
 
   /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 120px 0 60px;
-  }
+  .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 0 60px; }
   .hero-content { max-width: 800px; }
   .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    border-radius: 100px;
-    background: rgba(99,102,241,0.1);
-    border: 1px solid rgba(99,102,241,0.3);
-    color: var(--accent);
-    font-size: 0.85rem;
-    font-weight: 500;
-    margin-bottom: 24px;
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px;
+    border-radius: 100px; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.3);
+    color: var(--accent); font-size: 0.85rem; font-weight: 500; margin-bottom: 24px;
   }
-  .badge .dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--success);
-    box-shadow: 0 0 10px var(--success);
-    animation: pulse 2s infinite;
-  }
+  .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); box-shadow: 0 0 10px var(--success); animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
 
-  h1 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 24px;
-    letter-spacing: -0.02em;
-  }
-  h1 .gradient {
-    background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
+  h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; }
+  h1 .gradient { background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .hero p { font-size: 1.15rem; color: var(--text-dim); margin-bottom: 32px; max-width: 600px; }
   .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 28px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-decoration: none;
-    transition: all 0.3s;
-    cursor: pointer;
-    border: none;
-    font-family: inherit;
-  }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: white;
-    box-shadow: 0 8px 24px rgba(99,102,241,0.3);
-  }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 12px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-family: inherit; }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white; box-shadow: 0 8px 24px rgba(99,102,241,0.3); }
   .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(99,102,241,0.5); }
   .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
   .btn-ghost:hover { background: var(--card); border-color: var(--accent); }
 
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 24px;
-    margin-top: 60px;
-    padding: 32px;
-    background: rgba(26,32,53,0.5);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-  }
-  .stat-item .num {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, var(--accent), var(--accent-3));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px; margin-top: 60px; padding: 32px; background: rgba(26,32,53,0.5); border: 1px solid var(--border); border-radius: 20px; backdrop-filter: blur(10px); }
+  .stat-item .num { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, var(--accent), var(--accent-3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .stat-item .label { color: var(--text-dim); font-size: 0.9rem; }
 
   section { padding: 100px 0; position: relative; }
   .section-header { text-align: center; margin-bottom: 60px; }
-  .section-tag {
-    color: var(--accent);
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .section-header h2 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    margin-bottom: 16px;
-    letter-spacing: -0.01em;
-  }
+  .section-tag { color: var(--accent); font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; display: inline-block;}
+  .section-header h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 16px; letter-spacing: -0.01em; }
   .section-header p { color: var(--text-dim); max-width: 600px; margin: 0 auto; font-size: 1.05rem; }
 
-  /* SOBRE */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 60px;
-    align-items: center;
-  }
-  .about-visual {
-    aspect-ratio: 1;
-    background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(139,92,246,0.2));
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 8rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .about-visual::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 30% 30%, rgba(99,102,241,0.3), transparent 60%);
-  }
-  .about-visual span { position: relative; z-index: 1; }
-  .about-text h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.75rem; margin-bottom: 16px; }
-  .about-text p { color: var(--text-dim); margin-bottom: 16px; }
-  .skills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
-  .skill {
-    padding: 6px 14px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 0.85rem;
-    color: var(--text-dim);
-  }
+  /* ========== SEÇÃO E-BOOK ========== */
+  .ebook-section { background: linear-gradient(135deg, rgba(99,102,241,0.05), rgba(139,92,246,0.05)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+  .ebook-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .ebook-text h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.1; margin-bottom: 8px; background: linear-gradient(135deg, #fff, var(--text-dim)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .ebook-subtitle { font-size: 1.2rem; color: var(--accent-3); font-weight: 600; margin-bottom: 24px; }
+  .ebook-info-tags { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+  .info-tag { background: var(--card); border: 1px solid var(--border); padding: 6px 14px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: var(--text); }
+  .ebook-benefits { list-style: none; margin-bottom: 32px; }
+  .ebook-benefits li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 1.05rem; color: var(--text-dim); }
+  .ebook-benefits .check-icon { background: rgba(16,185,129,0.2); color: var(--success); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold; flex-shrink: 0; margin-top: 2px; }
+  
+  .ebook-price-wrap { background: rgba(10,14,26,0.6); border: 1px solid var(--border); padding: 24px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .ebook-price-wrap .price-title { font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+  .ebook-price { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 800; color: white; line-height: 1; }
+  .btn-kiwify { background: linear-gradient(135deg, var(--kiwify), #00a863); color: #fff; box-shadow: 0 8px 24px rgba(0, 211, 126, 0.4); font-size: 1.1rem; padding: 16px 32px; position: relative; overflow: hidden; }
+  .btn-kiwify::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: shine 3s infinite; }
+  @keyframes shine { 100% { left: 200%; } }
+  .btn-kiwify:hover { transform: scale(1.05); box-shadow: 0 12px 32px rgba(0, 211, 126, 0.6); }
 
-  /* ========== DEMO SUPREMA ========== */
+  .ebook-visual { display: flex; flex-direction: column; gap: 20px; }
+  .ebook-cover-wrapper { position: relative; border-radius: 16px; padding: 20px; background: linear-gradient(135deg, var(--card), var(--bg)); border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.5); text-align: center; }
+  .ebook-cover-wrapper img { max-width: 100%; border-radius: 8px; transition: transform 0.3s; max-height: 400px; object-fit: contain;}
+  .ebook-cover-wrapper:hover img { transform: scale(1.02); }
+  
+  /* Carousel de Previews CSS Sofisticado */
+  .preview-carousel { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: thin; scrollbar-color: var(--accent) var(--bg); }
+  .preview-carousel::-webkit-scrollbar { height: 6px; }
+  .preview-carousel::-webkit-scrollbar-track { background: var(--bg); border-radius: 10px; }
+  .preview-carousel::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+  
+  .preview-card { min-width: 150px; height: 200px; background: var(--card-2); border: 1px solid var(--border); border-radius: 12px; flex-shrink: 0; display: flex; flex-direction: column; padding: 12px; font-size: 0.75rem; color: var(--text-dim); position: relative; overflow: hidden; cursor: pointer; transition: transform 0.3s; }
+  .preview-card:hover { transform: translateY(-5px); border-color: var(--accent-3); }
+  .preview-title { font-weight: 600; color: var(--accent-3); margin-bottom: 10px; text-align: center; font-size: 0.8rem; }
+  
+  /* Ilustrações CSS no Carrossel */
+  .css-ill-code { background: var(--bg); border-radius: 6px; padding: 8px; flex-grow: 1; display: flex; flex-direction: column; gap: 4px; }
+  .css-ill-code span { height: 4px; border-radius: 2px; }
+  .css-ill-code span:nth-child(1) { width: 40%; background: #ef4444; }
+  .css-ill-code span:nth-child(2) { width: 80%; background: #3b82f6; margin-left: 10px; }
+  .css-ill-code span:nth-child(3) { width: 60%; background: #10b981; margin-left: 10px; }
+  .css-ill-code span:nth-child(4) { width: 90%; background: #fbbf24; margin-left: 20px; }
+
+  .css-ill-quiz { background: var(--bg); border-radius: 6px; padding: 8px; flex-grow: 1; display: flex; flex-direction: column; gap: 6px; }
+  .css-ill-quiz .q-box { height: 12px; background: rgba(255,255,255,0.1); border-radius: 4px; width: 100%; margin-bottom: 4px;}
+  .css-ill-quiz .q-opt { height: 10px; background: var(--card); border: 1px solid var(--border); border-radius: 4px; display: flex; align-items: center; padding-left: 4px;}
+  .css-ill-quiz .q-opt::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+
+  .css-ill-chart { background: var(--bg); border-radius: 6px; padding: 8px; flex-grow: 1; display: flex; align-items: flex-end; justify-content: space-around; gap: 4px; }
+  .css-ill-chart div { width: 20%; background: var(--accent); border-radius: 2px 2px 0 0; }
+  .css-ill-chart div:nth-child(1) { height: 30%; background: var(--accent-2); }
+  .css-ill-chart div:nth-child(2) { height: 70%; background: var(--accent); }
+  .css-ill-chart div:nth-child(3) { height: 50%; background: var(--accent-3); }
+  .css-ill-chart div:nth-child(4) { height: 90%; background: var(--success); }
+
+
+  /* ========== MULTI-DISCIPLINAS (DEMO NAV) ========== */
+  .subj-nav { display: flex; gap: 12px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
+  .subj-btn { padding: 12px 24px; background: var(--card); border: 1px solid var(--border); border-radius: 100px; color: var(--text-dim); font-weight: 600; font-family: 'Space Grotesk', sans-serif; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 8px; }
+  .subj-btn:hover { background: var(--card-2); color: var(--text); border-color: var(--accent-3); }
+  .subj-btn.active { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white; border-color: transparent; box-shadow: 0 4px 16px rgba(99,102,241,0.4); }
+  .subj-content { display: none; animation: fadeIn 0.5s; }
+  .subj-content.active { display: block; }
+
+  /* ========== DEMO SUPREMA (FOTOSSÍNTESE - BIOLOGIA) ========== */
   .demo-wrap {
     background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(6,182,212,0.08));
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 32px;
-    position: relative;
-    overflow: hidden;
+    border: 1px solid var(--border); border-radius: 24px; padding: 32px;
+    position: relative; overflow: hidden;
   }
   .demo-wrap::before {
-    content: '';
-    position: absolute;
-    top: -100px; right: -100px;
-    width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(34,197,94,0.2), transparent 60%);
-    border-radius: 50%;
-    animation: float 8s ease-in-out infinite;
+    content: ''; position: absolute; top: -100px; right: -100px;
+    width: 300px; height: 300px; background: radial-gradient(circle, rgba(34,197,94,0.2), transparent 60%);
+    border-radius: 50%; animation: float 8s ease-in-out infinite;
   }
 
-  .demo-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-bottom: 24px;
-    position: relative;
-    z-index: 2;
-  }
+  .demo-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; position: relative; z-index: 2; }
   .demo-title { display: flex; align-items: center; gap: 12px; }
-  .demo-title .emoji {
-    font-size: 2.5rem;
-    filter: drop-shadow(0 4px 12px rgba(34,197,94,0.5));
-    animation: sway 3s ease-in-out infinite;
-  }
-  @keyframes sway {
-    0%,100% { transform: rotate(0deg); }
-    50% { transform: rotate(8deg); }
-  }
+  .demo-title .emoji { font-size: 2.5rem; filter: drop-shadow(0 4px 12px rgba(34,197,94,0.5)); animation: sway 3s ease-in-out infinite; }
+  @keyframes sway { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(8deg); } }
   .demo-title h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; margin-bottom: 2px; }
   .demo-title small { color: var(--text-dim); font-size: 0.85rem; }
 
   .demo-stats { display: flex; gap: 12px; }
-  .demo-stat {
-    background: rgba(10,14,26,0.6);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 8px 14px;
-    text-align: center;
-    min-width: 70px;
-  }
+  .demo-stat { background: rgba(10,14,26,0.6); border: 1px solid var(--border); border-radius: 12px; padding: 8px 14px; text-align: center; min-width: 70px; }
   .demo-stat .lbl { font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
-  .demo-stat .val {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--success);
-  }
+  .demo-stat .val { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--success); }
 
-  /* ABAS */
-  .tabs {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 24px;
-    background: rgba(10,14,26,0.5);
-    padding: 6px;
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    position: relative;
-    z-index: 2;
-    overflow-x: auto;
-  }
-  .tab {
-    flex: 1;
-    min-width: 120px;
-    padding: 12px 16px;
-    background: transparent;
-    border: none;
-    border-radius: 10px;
-    color: var(--text-dim);
-    font-family: inherit;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    white-space: nowrap;
-  }
+  /* ABAS BIOLOGIA */
+  .tabs { display: flex; gap: 8px; margin-bottom: 24px; background: rgba(10,14,26,0.5); padding: 6px; border-radius: 14px; border: 1px solid var(--border); position: relative; z-index: 2; overflow-x: auto; }
+  .tab { flex: 1; min-width: 120px; padding: 12px 16px; background: transparent; border: none; border-radius: 10px; color: var(--text-dim); font-family: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; }
   .tab:hover:not(.active) { color: var(--text); background: rgba(255,255,255,0.03); }
-  .tab.active {
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: white;
-    box-shadow: 0 4px 12px rgba(99,102,241,0.4);
-  }
+  .tab.active { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white; box-shadow: 0 4px 12px rgba(99,102,241,0.4); }
   .tab .check { color: var(--success); font-size: 0.9rem; }
 
   .tab-content { display: none; animation: fadeIn 0.5s; position: relative; z-index: 2; }
   .tab-content.active { display: block; }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
 
-  /* TEORIA */
-  .theory-intro {
-    background: rgba(10,14,26,0.5);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    margin-bottom: 20px;
-  }
-  .theory-intro h4 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.3rem;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  /* TEORIA BIOLOGIA */
+  .theory-intro { background: rgba(10,14,26,0.5); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 20px; }
+  .theory-intro h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
   .theory-intro p { color: var(--text-dim); margin-bottom: 12px; }
   .theory-intro strong { color: var(--plant); }
 
-  /* ANIMAÇÃO VISUAL */
-  .scene {
-    background: linear-gradient(180deg, #1e3a8a 0%, #0a0e1a 100%);
-    border-radius: 16px;
-    padding: 30px 20px;
-    margin: 20px 0;
-    position: relative;
-    overflow: hidden;
-    min-height: 280px;
-    border: 1px solid var(--border);
-  }
-  .sun {
-    position: absolute;
-    top: 20px; right: 30px;
-    width: 70px; height: 70px;
-    background: radial-gradient(circle, #fde047, #fbbf24);
-    border-radius: 50%;
-    box-shadow: 0 0 60px #fbbf24, 0 0 100px rgba(251,191,36,0.5);
-    animation: sunPulse 3s ease-in-out infinite;
-  }
-  @keyframes sunPulse {
-    0%,100% { transform: scale(1); box-shadow: 0 0 60px #fbbf24, 0 0 100px rgba(251,191,36,0.5); }
-    50% { transform: scale(1.1); box-shadow: 0 0 80px #fbbf24, 0 0 140px rgba(251,191,36,0.7); }
-  }
-  .sun-rays {
-    position: absolute;
-    top: 55px; right: 65px;
-    width: 2px; height: 120px;
-    background: linear-gradient(180deg, rgba(251,191,36,0.8), transparent);
-    transform-origin: top;
-    animation: rayPulse 2s ease-in-out infinite;
-  }
+  .scene { background: linear-gradient(180deg, #1e3a8a 0%, #0a0e1a 100%); border-radius: 16px; padding: 30px 20px; margin: 20px 0; position: relative; overflow: hidden; min-height: 280px; border: 1px solid var(--border); }
+  .sun { position: absolute; top: 20px; right: 30px; width: 70px; height: 70px; background: radial-gradient(circle, #fde047, #fbbf24); border-radius: 50%; box-shadow: 0 0 60px #fbbf24, 0 0 100px rgba(251,191,36,0.5); animation: sunPulse 3s ease-in-out infinite; }
+  @keyframes sunPulse { 0%,100% { transform: scale(1); box-shadow: 0 0 60px #fbbf24, 0 0 100px rgba(251,191,36,0.5); } 50% { transform: scale(1.1); box-shadow: 0 0 80px #fbbf24, 0 0 140px rgba(251,191,36,0.7); } }
+  .sun-rays { position: absolute; top: 55px; right: 65px; width: 2px; height: 120px; background: linear-gradient(180deg, rgba(251,191,36,0.8), transparent); transform-origin: top; animation: rayPulse 2s ease-in-out infinite; }
   .sun-rays:nth-child(2) { transform: rotate(-25deg); animation-delay: 0.3s; }
   .sun-rays:nth-child(3) { transform: rotate(-50deg); animation-delay: 0.6s; }
-  @keyframes rayPulse {
-    0%,100% { opacity: 0.3; height: 100px; }
-    50% { opacity: 1; height: 140px; }
-  }
+  @keyframes rayPulse { 0%,100% { opacity: 0.3; height: 100px; } 50% { opacity: 1; height: 140px; } }
 
-  .plant {
-    position: absolute;
-    bottom: 0; left: 50%;
-    transform: translateX(-50%);
-    font-size: 6rem;
-    filter: drop-shadow(0 0 20px rgba(34,197,94,0.6));
-    animation: sway 4s ease-in-out infinite;
-  }
+  .plant { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); font-size: 6rem; filter: drop-shadow(0 0 20px rgba(34,197,94,0.6)); animation: sway 4s ease-in-out infinite; }
 
-  .molecule {
-    position: absolute;
-    padding: 6px 12px;
-    border-radius: 100px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    font-family: 'Space Grotesk', sans-serif;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
-  }
-  .mol-co2 {
-    background: rgba(107,114,128,0.4);
-    color: #e5e7eb;
-    top: 60%; left: 10%;
-    animation: moveToPlant 4s ease-in-out infinite;
-  }
-  .mol-h2o {
-    background: rgba(59,130,246,0.4);
-    color: #dbeafe;
-    top: 75%; left: 20%;
-    animation: moveToPlant 4s ease-in-out infinite 0.5s;
-  }
-  .mol-o2 {
-    background: rgba(16,185,129,0.4);
-    color: #d1fae5;
-    top: 30%; right: 15%;
-    animation: moveFromPlant 4s ease-in-out infinite 1s;
-  }
-  .mol-glucose {
-    background: rgba(245,158,11,0.4);
-    color: #fef3c7;
-    top: 50%; right: 10%;
-    animation: moveFromPlant 4s ease-in-out infinite 1.5s;
-  }
+  .molecule { position: absolute; padding: 6px 12px; border-radius: 100px; font-size: 0.85rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); }
+  .mol-co2 { background: rgba(107,114,128,0.4); color: #e5e7eb; top: 60%; left: 10%; animation: moveToPlant 4s ease-in-out infinite; }
+  .mol-h2o { background: rgba(59,130,246,0.4); color: #dbeafe; top: 75%; left: 20%; animation: moveToPlant 4s ease-in-out infinite 0.5s; }
+  .mol-o2 { background: rgba(16,185,129,0.4); color: #d1fae5; top: 30%; right: 15%; animation: moveFromPlant 4s ease-in-out infinite 1s; }
+  .mol-glucose { background: rgba(245,158,11,0.4); color: #fef3c7; top: 50%; right: 10%; animation: moveFromPlant 4s ease-in-out infinite 1.5s; }
 
-  @keyframes moveToPlant {
-    0% { transform: translate(0,0); opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { transform: translate(200px, -60px); opacity: 0; }
-  }
-  @keyframes moveFromPlant {
-    0% { transform: translate(0,0); opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { transform: translate(-150px, -40px); opacity: 0; }
-  }
+  @keyframes moveToPlant { 0% { transform: translate(0,0); opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { transform: translate(200px, -60px); opacity: 0; } }
+  @keyframes moveFromPlant { 0% { transform: translate(0,0); opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { transform: translate(-150px, -40px); opacity: 0; } }
+  .scene-label { position: absolute; bottom: 12px; left: 12px; background: rgba(0,0,0,0.6); color: var(--text-dim); font-size: 0.75rem; padding: 4px 10px; border-radius: 6px; backdrop-filter: blur(5px); }
 
-  .scene-label {
-    position: absolute;
-    bottom: 12px; left: 12px;
-    background: rgba(0,0,0,0.6);
-    color: var(--text-dim);
-    font-size: 0.75rem;
-    padding: 4px 10px;
-    border-radius: 6px;
-    backdrop-filter: blur(5px);
-  }
-
-  /* EQUAÇÃO */
-  .equation-display {
-    background: rgba(10,14,26,0.6);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px;
-    margin-top: 20px;
-    text-align: center;
-  }
-  .equation-display .eq-label {
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .equation {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(1rem, 2.5vw, 1.4rem);
-    font-weight: 700;
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-  }
-  .eq-part {
-    padding: 6px 12px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-  }
+  .equation-display { background: rgba(10,14,26,0.6); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-top: 20px; text-align: center; }
+  .equation-display .eq-label { font-size: 0.8rem; color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+  .equation { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1rem, 2.5vw, 1.4rem); font-weight: 700; display: inline-flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center; }
+  .eq-part { padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border); }
   .eq-part.reagent { background: rgba(59,130,246,0.15); color: #93c5fd; }
   .eq-part.product { background: rgba(34,197,94,0.15); color: #86efac; }
   .eq-arrow { color: var(--sun); font-size: 1.2em; }
   .eq-plus { color: var(--text-dim); }
 
-  /* FLIP CARDS */
-  .curiosities {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-    margin-top: 20px;
-  }
-  .flip-card {
-    perspective: 1000px;
-    height: 180px;
-    cursor: pointer;
-  }
-  .flip-card-inner {
-    position: relative;
-    width: 100%; height: 100%;
-    transition: transform 0.7s;
-    transform-style: preserve-3d;
-  }
+  .curiosities { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; }
+  .flip-card { perspective: 1000px; height: 180px; cursor: pointer; }
+  .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s; transform-style: preserve-3d; }
   .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
-  .flip-face {
-    position: absolute;
-    width: 100%; height: 100%;
-    backface-visibility: hidden;
-    border-radius: 14px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border: 1px solid var(--border);
-  }
-  .flip-front {
-    background: linear-gradient(135deg, var(--card), var(--card-2));
-  }
+  .flip-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border: 1px solid var(--border); }
+  .flip-front { background: linear-gradient(135deg, var(--card), var(--card-2)); }
   .flip-front .icon { font-size: 2.5rem; margin-bottom: 8px; }
   .flip-front .title { font-weight: 600; font-family: 'Space Grotesk', sans-serif; }
   .flip-front .hint { font-size: 0.75rem; color: var(--text-dim); margin-top: 8px; }
-  .flip-back {
-    background: linear-gradient(135deg, rgba(34,197,94,0.2), rgba(16,185,129,0.15));
-    border-color: rgba(34,197,94,0.3);
-    transform: rotateY(180deg);
-    font-size: 0.88rem;
-    color: var(--text);
-  }
+  .flip-back { background: linear-gradient(135deg, rgba(34,197,94,0.2), rgba(16,185,129,0.15)); border-color: rgba(34,197,94,0.3); transform: rotateY(180deg); font-size: 0.88rem; color: var(--text); }
 
-  /* PRÁTICA - DRAG & DROP */
-  .practice-intro {
-    background: rgba(10,14,26,0.5);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
+  /* PRÁTICA - DRAG & DROP BIOLOGIA */
+  .practice-intro { background: rgba(10,14,26,0.5); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 20px; }
   .practice-intro h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; margin-bottom: 8px; }
   .practice-intro p { color: var(--text-dim); font-size: 0.95rem; }
 
-  .drop-zone-wrap {
-    background: rgba(10,14,26,0.5);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px;
-    margin-bottom: 16px;
-  }
-  .drop-zone-wrap .dz-label {
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    text-align: center;
-  }
-  .drop-zones {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-    min-height: 70px;
-  }
-  .drop-zone {
-    min-width: 100px;
-    min-height: 52px;
-    border: 2px dashed var(--border);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 16px;
-    color: var(--text-dim);
-    font-size: 0.9rem;
-    transition: all 0.3s;
-  }
+  .drop-zone-wrap { background: rgba(10,14,26,0.5); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 16px; }
+  .drop-zone-wrap .dz-label { font-size: 0.8rem; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; text-align: center; }
+  .drop-zones { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center; min-height: 70px; }
+  .drop-zone { min-width: 100px; min-height: 52px; border: 2px dashed var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 10px 16px; color: var(--text-dim); font-size: 0.9rem; transition: all 0.3s; }
   .drop-zone.drag-over { border-color: var(--accent); background: rgba(99,102,241,0.1); }
   .drop-zone.filled { border-style: solid; background: rgba(10,14,26,0.5); color: var(--text); font-weight: 600; }
   .drop-zone.correct { border-color: var(--success); background: rgba(16,185,129,0.15); color: #86efac; }
   .drop-zone.wrong { border-color: var(--danger); background: rgba(239,68,68,0.15); color: #fca5a5; animation: shake 0.4s; }
   .drop-static { font-size: 1.1rem; font-weight: 700; color: var(--text-dim); padding: 0 6px; }
 
-  .draggables {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 20px;
-    padding: 16px;
-    background: rgba(10,14,26,0.3);
-    border-radius: 12px;
-    border: 1px dashed var(--border);
-  }
-  .draggable {
-    padding: 10px 18px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: white;
-    border-radius: 10px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    cursor: grab;
-    user-select: none;
-    transition: all 0.2s;
-    box-shadow: 0 4px 12px rgba(99,102,241,0.3);
-  }
+  .draggables { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 20px; padding: 16px; background: rgba(10,14,26,0.3); border-radius: 12px; border: 1px dashed var(--border); }
+  .draggable { padding: 10px 18px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white; border-radius: 10px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; cursor: grab; user-select: none; transition: all 0.2s; box-shadow: 0 4px 12px rgba(99,102,241,0.3); }
   .draggable:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(99,102,241,0.5); }
   .draggable:active { cursor: grabbing; }
   .draggable.used { opacity: 0.3; pointer-events: none; }
 
-  .practice-actions {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 20px;
-    flex-wrap: wrap;
-  }
-  .practice-result {
-    margin-top: 16px;
-    padding: 14px;
-    border-radius: 12px;
-    text-align: center;
-    font-weight: 600;
-    display: none;
-    animation: slideUp 0.4s;
-  }
+  .practice-actions { display: flex; gap: 10px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+  .practice-result { margin-top: 16px; padding: 14px; border-radius: 12px; text-align: center; font-weight: 600; display: none; animation: slideUp 0.4s; }
   .practice-result.show { display: block; }
   .practice-result.success { background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); color: var(--success); }
   .practice-result.error { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: var(--danger); }
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
 
-  /* QUIZ */
-  .progress-bar {
-    height: 8px;
-    background: rgba(10,14,26,0.6);
-    border-radius: 100px;
-    overflow: hidden;
-    margin-bottom: 20px;
-  }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--success), var(--accent-3));
-    border-radius: 100px;
-    width: 0%;
-    transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-    box-shadow: 0 0 10px rgba(16,185,129,0.5);
-  }
-  .game-screen {
-    background: rgba(10,14,26,0.5);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    min-height: 320px;
-  }
+  /* QUIZ BIOLOGIA */
+  .progress-bar { height: 8px; background: rgba(10,14,26,0.6); border-radius: 100px; overflow: hidden; margin-bottom: 20px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--success), var(--accent-3)); border-radius: 100px; width: 0%; transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1); box-shadow: 0 0 10px rgba(16,185,129,0.5); }
+  .game-screen { background: rgba(10,14,26,0.5); border: 1px solid var(--border); border-radius: 16px; padding: 28px; min-height: 320px; }
   .question-num { font-size: 0.75rem; color: var(--accent-3); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
   .question-text { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; line-height: 1.4; }
   .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
-  .option-btn {
-    background: var(--card);
-    border: 2px solid var(--border);
-    border-radius: 12px;
-    padding: 14px 18px;
-    text-align: left;
-    color: var(--text);
-    font-family: inherit;
-    font-size: 0.93rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  .option-btn { background: var(--card); border: 2px solid var(--border); border-radius: 12px; padding: 14px 18px; text-align: left; color: var(--text); font-family: inherit; font-size: 0.93rem; font-weight: 500; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px; }
   .option-btn:hover:not(:disabled) { border-color: var(--accent); background: var(--card-2); transform: translateX(4px); }
   .option-btn:disabled { cursor: not-allowed; }
-  .option-btn .letter {
-    width: 28px; height: 28px;
-    background: rgba(99,102,241,0.15);
-    color: var(--accent);
-    border-radius: 7px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    flex-shrink: 0;
-    font-size: 0.85rem;
-  }
+  .option-btn .letter { width: 28px; height: 28px; background: rgba(99,102,241,0.15); color: var(--accent); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; font-size: 0.85rem; }
   .option-btn.correct { border-color: var(--success); background: rgba(16,185,129,0.15); animation: correctPulse 0.5s; }
   .option-btn.correct .letter { background: var(--success); color: white; }
   .option-btn.wrong { border-color: var(--danger); background: rgba(239,68,68,0.15); animation: shake 0.4s; }
   .option-btn.wrong .letter { background: var(--danger); color: white; }
 
   @keyframes correctPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.03); } }
-  @keyframes shake {
-    0%,100% { transform: translateX(0); }
-    25% { transform: translateX(-6px); }
-    75% { transform: translateX(6px); }
-  }
-
+  
   .feedback { margin-top: 16px; padding: 14px; border-radius: 12px; font-size: 0.92rem; animation: slideUp 0.4s; display: none; }
   .feedback.show { display: block; }
   .feedback.success { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: var(--success); }
   .feedback.error { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: var(--danger); }
-
-  /* TELA FINAL */
+  
+  /* TELA FINAL BIOLOGIA */
   .game-end { text-align: center; padding: 20px 0; }
   .game-end .trophy { font-size: 5rem; margin-bottom: 12px; animation: bounce 1s infinite; }
   @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
@@ -742,173 +309,108 @@
   .game-end .final-score { font-size: 1rem; color: var(--text-dim); margin-bottom: 20px; }
   .game-end .final-score strong { color: var(--success); font-size: 1.2rem; }
 
-  .badges {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    margin: 20px 0;
-  }
-  .badge-item {
-    background: linear-gradient(135deg, var(--card), var(--card-2));
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.85rem;
-    animation: popIn 0.5s backwards;
-  }
-  .badge-item.earned {
-    border-color: var(--warning);
-    background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(245,158,11,0.1));
-    box-shadow: 0 0 20px rgba(245,158,11,0.3);
-  }
+  .badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 20px 0; }
+  .badge-item { background: linear-gradient(135deg, var(--card), var(--card-2)); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; gap: 8px; font-size: 0.85rem; animation: popIn 0.5s backwards; }
+  .badge-item.earned { border-color: var(--warning); background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(245,158,11,0.1)); box-shadow: 0 0 20px rgba(245,158,11,0.3); }
   .badge-item.earned .b-emoji { filter: drop-shadow(0 0 8px rgba(245,158,11,0.6)); }
   .badge-item:not(.earned) { opacity: 0.4; filter: grayscale(1); }
   .badge-item .b-emoji { font-size: 1.5rem; }
-  @keyframes popIn {
-    0% { opacity: 0; transform: scale(0.5); }
-    60% { transform: scale(1.1); }
-    100% { opacity: 1; transform: scale(1); }
-  }
+  @keyframes popIn { 0% { opacity: 0; transform: scale(0.5); } 60% { transform: scale(1.1); } 100% { opacity: 1; transform: scale(1); } }
 
-  .demo-footer {
-    margin-top: 20px;
-    padding: 16px;
-    background: rgba(99,102,241,0.08);
-    border: 1px dashed rgba(99,102,241,0.3);
-    border-radius: 12px;
-    text-align: center;
-    color: var(--text-dim);
-    font-size: 0.9rem;
-    position: relative;
-    z-index: 2;
-  }
+  .demo-footer { margin-top: 20px; padding: 16px; background: rgba(99,102,241,0.08); border: 1px dashed rgba(99,102,241,0.3); border-radius: 12px; text-align: center; color: var(--text-dim); font-size: 0.9rem; position: relative; z-index: 2; }
   .demo-footer strong { color: var(--accent); }
 
-  /* Confete */
-  .confetti {
-    position: fixed;
-    width: 10px; height: 10px;
-    pointer-events: none;
-    z-index: 9999;
-    animation: fall linear forwards;
-  }
-  @keyframes fall {
-    to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-  }
+  /* ========== ESTILOS DAS NOVAS DISCIPLINAS ========== */
+  .css-demo-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px; overflow: hidden; position: relative;}
+  
+  /* Matemática - Geometria Dinâmica */
+  .dyn-math-container { display: flex; gap: 40px; align-items: center; justify-content: center; flex-wrap: wrap; width: 100%; background: rgba(10,14,26,0.5); padding: 30px; border-radius: 16px; border: 1px dashed var(--border); margin-top: 10px;}
+  .dyn-visual { display: flex; flex-direction: column; align-items: center; gap: 30px; width: 240px; }
+  .dyn-triangle-wrapper { position: relative; height: 120px; display: flex; align-items: flex-end; justify-content: flex-start; }
+  .dyn-triangle { width: 90px; height: 120px; background: linear-gradient(135deg, var(--accent), var(--accent-3)); clip-path: polygon(0 0, 0 100%, 100% 100%); transition: width 0.1s ease-out; box-shadow: 0 0 20px rgba(99,102,241,0.4); }
+  .dyn-label { position: absolute; font-family: 'Space Grotesk'; font-weight: bold; color: var(--text); font-size: 0.9rem;}
+  .lbl-b { left: -45px; top: 50px; } /* Altura fixa 4 */
+  .lbl-a { bottom: -30px; left: 45px; transform: translateX(-50%); transition: left 0.1s; white-space: nowrap; } /* Base dinâmica */
+  .lbl-c { top: 40px; left: 55px; transition: left 0.1s; white-space: nowrap; color: var(--accent-3); } /* Hipotenusa */
+  
+  #mathSlider { -webkit-appearance: none; width: 100%; background: var(--card-2); height: 8px; border-radius: 4px; outline: none; border: 1px solid var(--border);}
+  #mathSlider::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--accent-3); cursor: pointer; transition: transform 0.2s; box-shadow: 0 0 10px var(--accent-3); }
+  #mathSlider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+  .dyn-formula { background: var(--card-2); padding: 24px; border-radius: 12px; border: 1px solid var(--border); min-width: 220px; box-shadow: inset 0 0 20px rgba(0,0,0,0.5); }
+  .f-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px; text-align: center;}
+  .f-line { font-family: monospace; font-size: 1.2rem; color: var(--text-dim); margin-bottom: 8px; }
+  .hl-val { color: var(--accent-3); font-weight: bold; transition: all 0.2s;}
+  .f-result { font-family: 'Space Grotesk'; font-size: 1.8rem; font-weight: bold; color: var(--success); margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 12px; transition: all 0.2s;}
+  
+  /* Português - Quiz Interativo */
+  .pt-quiz-container { background: var(--bg); padding: 30px; border-radius: 16px; border: 1px dashed var(--border); text-align: center; width: 100%; max-width: 600px;}
+  .pt-sentence { font-size: 1.3rem; margin-bottom: 20px; font-family: 'Space Grotesk'; }
+  .pt-blank { display: inline-block; width: 100px; height: 30px; border-bottom: 2px solid var(--text-dim); margin: 0 10px; vertical-align: bottom; transition: all 0.3s; color: var(--accent-3); font-weight: bold;}
+  .pt-options { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;}
+  .pt-btn { padding: 10px 20px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; color: var(--text); cursor: pointer; transition: all 0.2s; font-weight: 600;}
+  .pt-btn:hover { border-color: var(--accent); }
+  .pt-btn.correct { background: var(--success); color: white; border-color: var(--success); box-shadow: 0 0 15px rgba(16,185,129,0.5); }
+  .pt-btn.wrong { background: var(--danger); color: white; border-color: var(--danger); animation: shake 0.4s; }
+
+  /* Geografia - Card 3D Glassmorphism */
+  .geo-container { perspective: 1000px; }
+  .geo-card { width: 300px; height: 400px; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: transform 0.5s; transform-style: preserve-3d; cursor: pointer; box-shadow: 0 25px 45px rgba(0,0,0,0.2);}
+  .geo-card:hover { transform: rotateY(10deg) rotateX(5deg) translateY(-10px); border-color: var(--accent-3); }
+  .globe-spinner { width: 100px; height: 100px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #3b82f6, #1e3a8a); position: absolute; top: -20px; right: -20px; box-shadow: inset -10px -10px 20px rgba(0,0,0,0.5), 0 0 20px rgba(59,130,246,0.4); animation: spinGlobe 10s linear infinite; }
+  .globe-spinner::after { content: '🌎'; font-size: 5rem; position: absolute; top: 10px; left: 10px; opacity: 0.2; }
+  @keyframes spinGlobe { 100% { transform: rotate(360deg); } }
+  .geo-title { font-family: 'Space Grotesk'; font-size: 2.2rem; font-weight: 800; color: white; margin-top: auto; margin-bottom: 20px; transform: translateZ(30px); }
+  .geo-data { display: flex; flex-direction: column; gap: 10px; transform: translateZ(20px); }
+  .geo-stat { display: flex; justify-content: space-between; font-size: 0.95rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; }
+  .geo-stat strong { color: var(--accent-3); }
+
+  /* Química - Átomo Animado */
+  .chem-container { display: flex; flex-direction: column; align-items: center; gap: 30px; }
+  .atom { position: relative; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; }
+  .nucleus { width: 40px; height: 40px; background: radial-gradient(circle, #ef4444, #991b1b); border-radius: 50%; box-shadow: 0 0 20px #ef4444; z-index: 10; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-family: 'Space Grotesk'; font-size: 1.2rem;}
+  .orbit { position: absolute; border: 1px dashed rgba(255,255,255,0.2); border-radius: 50%; animation: spin linear infinite; }
+  .orbit-1 { width: 100px; height: 100px; animation-duration: 4s; }
+  .orbit-2 { width: 160px; height: 160px; animation-duration: 6s; animation-direction: reverse; }
+  .orbit-3 { width: 220px; height: 220px; animation-duration: 8s; transform: rotateX(60deg); }
+  .electron { width: 12px; height: 12px; background: #06b6d4; border-radius: 50%; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); box-shadow: 0 0 10px #06b6d4; }
+  @keyframes spin { 100% { transform: rotate(360deg); } }
+  .chem-info { text-align: center; background: var(--bg); padding: 15px 30px; border-radius: 100px; border: 1px solid var(--border); }
+  .chem-info span { color: var(--accent-3); font-weight: bold; }
+
+  /* SOBRE */
+  .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: center; }
+  .about-visual { aspect-ratio: 1; background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(139,92,246,0.2)); border: 1px solid var(--border); border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 8rem; position: relative; overflow: hidden; }
+  .about-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 30%, rgba(99,102,241,0.3), transparent 60%); }
+  .about-visual span { position: relative; z-index: 1; }
+  .about-text h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.75rem; margin-bottom: 16px; }
+  .about-text p { color: var(--text-dim); margin-bottom: 16px; }
+  .skills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .skill { padding: 6px 14px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; font-size: 0.85rem; color: var(--text-dim); }
 
   /* SERVIÇOS */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-  }
-  .service-card {
-    background: linear-gradient(135deg, var(--card), var(--card-2));
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 32px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s;
-  }
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s;
-  }
-  .service-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(99,102,241,0.4);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-  }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .service-card { background: linear-gradient(135deg, var(--card), var(--card-2)); border: 1px solid var(--border); border-radius: 20px; padding: 32px; position: relative; overflow: hidden; transition: all 0.4s; display: flex; flex-direction: column;}
+  .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
+  .service-card:hover { transform: translateY(-6px); border-color: rgba(99,102,241,0.4); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
   .service-card:hover::before { transform: scaleX(1); }
-  .service-card.featured {
-    background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.15));
-    border-color: rgba(99,102,241,0.4);
-  }
+  .service-card.featured { background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.15)); border-color: rgba(99,102,241,0.4); }
   .service-card.featured::before { transform: scaleX(1); }
-
-  .card-category {
-    display: inline-block;
-    padding: 4px 12px;
-    background: rgba(99,102,241,0.15);
-    color: var(--accent);
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .card-icon {
-    width: 56px; height: 56px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.75rem;
-    margin-bottom: 20px;
-  }
+  .card-category { display: inline-block; padding: 4px 12px; background: rgba(99,102,241,0.15); color: var(--accent); border-radius: 6px; font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; align-self: flex-start;}
+  .card-icon { width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: flex; align-items: center; justify-content: center; font-size: 1.75rem; margin-bottom: 20px; }
   .service-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; margin-bottom: 8px; }
   .service-card .deliverable { color: var(--accent-3); font-weight: 600; font-size: 0.9rem; margin-bottom: 12px; }
-  .service-card .description { color: var(--text-dim); font-size: 0.92rem; margin-bottom: 24px; min-height: 80px; }
-  .card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 20px;
-    border-top: 1px solid var(--border);
-  }
+  .service-card .description { color: var(--text-dim); font-size: 0.92rem; margin-bottom: 24px; flex-grow: 1; }
+  .card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid var(--border); margin-top: auto;}
   .price { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text); }
   .price small { font-size: 0.85rem; color: var(--text-dim); font-weight: 400; }
-  .card-cta {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: transform 0.3s;
-  }
+  .card-cta { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: transform 0.3s; }
   .card-cta:hover { transform: translateX(4px); }
-  .popular-tag {
-    position: absolute;
-    top: 16px; right: 16px;
-    background: linear-gradient(135deg, var(--accent-3), var(--accent));
-    color: white;
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-  }
+  .popular-tag { position: absolute; top: 16px; right: 16px; background: linear-gradient(135deg, var(--accent-3), var(--accent)); color: white; padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; }
 
   /* CONTATO */
-  .contact-wrap {
-    background: linear-gradient(135deg, var(--card), var(--card-2));
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 60px 40px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .contact-wrap::before {
-    content: '';
-    position: absolute;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background: radial-gradient(circle, rgba(99,102,241,0.1), transparent 50%);
-    animation: rotate 30s linear infinite;
-  }
+  .contact-wrap { background: linear-gradient(135deg, var(--card), var(--card-2)); border: 1px solid var(--border); border-radius: 24px; padding: 60px 40px; text-align: center; position: relative; overflow: hidden; }
+  .contact-wrap::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(99,102,241,0.1), transparent 50%); animation: rotate 30s linear infinite; }
   @keyframes rotate { to { transform: rotate(360deg); } }
   .contact-wrap > * { position: relative; z-index: 1; }
   .contact-wrap h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 16px; }
@@ -916,18 +418,16 @@
   .contact-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
   .btn-whats { background: #25d366; color: white; font-size: 1.05rem; padding: 16px 32px; }
   .btn-whats:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(37,211,102,0.4); }
-  .contact-info {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    flex-wrap: wrap;
-    padding-top: 32px;
-    border-top: 1px solid var(--border);
-  }
+  .contact-info { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; padding-top: 32px; border-top: 1px solid var(--border); }
   .info-item { display: flex; align-items: center; gap: 10px; color: var(--text-dim); font-size: 0.95rem; }
   .info-item strong { color: var(--text); }
 
   footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim); font-size: 0.9rem; }
+
+  .confetti { position: fixed; width: 10px; height: 10px; pointer-events: none; z-index: 9999; animation: fall linear forwards; }
+  @keyframes fall { to { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
 
   .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
   .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -935,22 +435,11 @@
   @media (max-width: 768px) {
     .nav-links { display: none; }
     .menu-toggle { display: block; }
-    .nav-links.active {
-      display: flex;
-      position: absolute;
-      top: 100%; left: 0; right: 0;
-      flex-direction: column;
-      background: var(--bg-2);
-      padding: 20px;
-      border-bottom: 1px solid var(--border);
-    }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .about-visual { max-width: 300px; margin: 0 auto; }
+    .nav-links.active { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--bg-2); padding: 20px; border-bottom: 1px solid var(--border); }
+    .ebook-grid, .about-grid { grid-template-columns: 1fr; gap: 40px; }
     .contact-wrap { padding: 40px 24px; }
     .contact-wrap h2 { font-size: 2rem; }
     section { padding: 70px 0; }
-    .demo-wrap { padding: 20px; }
-    .game-screen { padding: 20px; }
     .demo-stats { width: 100%; justify-content: space-around; }
     .tab { font-size: 0.8rem; padding: 10px 8px; min-width: auto; }
     .plant { font-size: 4rem; }
@@ -970,9 +459,9 @@
     <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">☰</button>
     <ul class="nav-links">
       <li><a href="#inicio">Início</a></li>
-      <li><a href="#demo">Demo</a></li>
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#ebook">E-book</a></li>
+      <li><a href="#demo">Exemplos</a></li>
+      <li><a href="#servicos">Soluções</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
   </div>
@@ -981,17 +470,17 @@
 <section class="hero" id="inicio">
   <div class="container">
     <div class="hero-content">
-      <div class="badge"><span class="dot"></span> Disponível para projetos</div>
+      <div class="badge"><span class="dot"></span> Especialista em Tecnologia Educacional</div>
       <h1>Transformando <span class="gradient">educação</span> com tecnologia e <span class="gradient">IA</span></h1>
-      <p>Sou Jó Adrian, engenheiro eletricista e criador de soluções didáticas interativas. Desenvolvo materiais gamificados, kits de estudo completos e ministro workshops de IA para professores que querem inovar em sala de aula.</p>
+      <p>Sou Jó Adrian, engenheiro eletricista e criador de soluções didáticas interativas. Desenvolvo materiais gamificados, kits de estudo completos e capacito professores para a nova era da IA em sala de aula.</p>
       <div class="hero-buttons">
-        <a href="#demo" class="btn btn-primary">🎮 Testar Demo Completa</a>
-        <a href="#servicos" class="btn btn-ghost">Ver Soluções</a>
+        <a href="#ebook" class="btn btn-primary">📖 Ver Novo E-book</a>
+        <a href="#demo" class="btn btn-ghost">Testar Demos Interativas</a>
       </div>
 
       <div class="stats">
         <div class="stat-item"><div class="num">HTML</div><div class="label">Mini-sites interativos</div></div>
-        <div class="stat-item"><div class="num">IA</div><div class="label">Aplicada à educação</div></div>
+        <div class="stat-item"><div class="num">IA</div><div class="label">Produtividade Docente</div></div>
         <div class="stat-item"><div class="num">360º</div><div class="label">Kits completos</div></div>
         <div class="stat-item"><div class="num">100%</div><div class="label">Offline & acessível</div></div>
       </div>
@@ -999,171 +488,312 @@
   </div>
 </section>
 
-<!-- ===== DEMO SUPREMA ===== -->
-<section id="demo">
+<!-- ===== SEÇÃO DO EBOOK ===== -->
+<section id="ebook" class="ebook-section">
   <div class="container">
-    <div class="section-header reveal">
-      <div class="section-tag">🎮 Experiência completa</div>
-      <h2>Módulo Interativo: Fotossíntese</h2>
-      <p>Navegue pelas abas abaixo e veja na prática como funciona um material didático completo — com teoria animada, prática gamificada e avaliação.</p>
-    </div>
+    <div class="ebook-grid">
+      <div class="ebook-text reveal">
+        <div class="section-tag">🔥 Lançamento Oficial</div>
+        <h2>Materiais Didáticos Interativos com IA</h2>
+        <p class="ebook-subtitle">Do prompt ao HTML no ar (VS Code + GitHub Pages)</p>
+        
+        <div class="ebook-info-tags">
+          <span class="info-tag">📄 26 Páginas Práticas</span>
+          <span class="info-tag">🎯 Para Profs, Alunos e Criadores</span>
+        </div>
 
-    <div class="demo-wrap reveal">
-      <div class="demo-header">
-        <div class="demo-title">
-          <span class="emoji">🌱</span>
+        <ul class="ebook-benefits">
+          <li><span class="check-icon">✓</span> <strong>Crie rápido:</strong> Gere um material interativo completo (quiz, flashcards, exercícios) em um único arquivo HTML usando IA.</li>
+          <li><span class="check-icon">✓</span> <strong>Teste na hora:</strong> Aprenda a abrir e testar direto no navegador com o Live Server de forma extremamente simples.</li>
+          <li><span class="check-icon">✓</span> <strong>Publique de graça:</strong> Suba para o GitHub Pages e tenha um link profissional pronto para enviar aos seus alunos.</li>
+        </ul>
+
+        <div class="ebook-price-wrap">
           <div>
-            <h3>Fotossíntese · Módulo 01</h3>
-            <small>Biologia · 1º Ano do Ensino Médio</small>
+            <div class="price-title">Oferta Especial</div>
+            <div class="ebook-price">R$ 49,90</div>
           </div>
-        </div>
-        <div class="demo-stats">
-          <div class="demo-stat"><div class="lbl">XP</div><div class="val" id="xp">0</div></div>
-          <div class="demo-stat"><div class="lbl">Nível</div><div class="val" id="level">1</div></div>
+          <a href="https://pay.kiwify.com.br/Pt6Dzp9" target="_blank" class="btn btn-kiwify">
+            🛒 Quero Comprar Agora
+          </a>
         </div>
       </div>
-
-      <!-- ABAS -->
-      <div class="tabs">
-        <button class="tab active" data-tab="theory">📖 Teoria <span class="check" id="check-theory" style="display:none">✓</span></button>
-        <button class="tab" data-tab="practice">🧩 Prática <span class="check" id="check-practice" style="display:none">✓</span></button>
-        <button class="tab" data-tab="quiz">🎯 Quiz <span class="check" id="check-quiz" style="display:none">✓</span></button>
-      </div>
-
-      <!-- TEORIA -->
-      <div class="tab-content active" id="tab-theory">
-        <div class="theory-intro">
-          <h4>🌿 O que é Fotossíntese?</h4>
-          <p>A <strong>fotossíntese</strong> é o processo pelo qual as plantas, algas e algumas bactérias transformam <strong>luz solar</strong>, <strong>gás carbônico (CO₂)</strong> e <strong>água (H₂O)</strong> em <strong>glicose</strong> (alimento) e <strong>oxigênio</strong> (O₂).</p>
-          <p>Esse processo ocorre nos <strong>cloroplastos</strong>, graças ao pigmento verde chamado <strong>clorofila</strong>. É através dela que a vida na Terra como conhecemos é possível! 🌍</p>
-        </div>
-
-        <!-- CENA ANIMADA -->
-        <div class="scene">
-          <div class="sun"></div>
-          <div class="sun-rays"></div>
-          <div class="sun-rays"></div>
-          <div class="sun-rays"></div>
-          <div class="plant">🌿</div>
-          <div class="molecule mol-co2">CO₂</div>
-          <div class="molecule mol-h2o">H₂O</div>
-          <div class="molecule mol-o2">O₂</div>
-          <div class="molecule mol-glucose">C₆H₁₂O₆</div>
-          <div class="scene-label">🎬 Animação: observe as moléculas entrando e saindo</div>
-        </div>
-
-        <!-- EQUAÇÃO -->
-        <div class="equation-display">
-          <div class="eq-label">⚗️ Equação Química</div>
-          <div class="equation">
-            <span class="eq-part reagent">6 CO₂</span>
-            <span class="eq-plus">+</span>
-            <span class="eq-part reagent">6 H₂O</span>
-            <span class="eq-arrow">—☀️→</span>
-            <span class="eq-part product">C₆H₁₂O₆</span>
-            <span class="eq-plus">+</span>
-            <span class="eq-part product">6 O₂</span>
-          </div>
-        </div>
-
-        <!-- CURIOSIDADES FLIP -->
-        <h4 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; margin: 24px 0 12px; color: var(--text);">💡 Clique pra revelar curiosidades</h4>
-        <div class="curiosities">
-          <div class="flip-card" onclick="this.classList.toggle('flipped')">
-            <div class="flip-card-inner">
-              <div class="flip-face flip-front">
-                <div class="icon">🌊</div>
-                <div class="title">Oxigênio dos oceanos</div>
-                <div class="hint">Clique pra ver</div>
+      
+      <div class="ebook-visual reveal">
+         <div class="ebook-cover-wrapper">
+            <!-- IMAGEM DA CAPA -->
+            <img src="logo.png" alt="Capa do Ebook: Materiais Didáticos Interativos com IA" onerror="this.src='https://via.placeholder.com/400x500/1a2035/6366f1?text=Capa+do+Ebook';"/>
+         </div>
+         <p style="text-align:center; font-size:0.85rem; color:var(--text-dim); margin-top:-10px;">Arraste para ver um pouco do conteúdo por dentro 👇</p>
+         
+         <div class="preview-carousel">
+            <div class="preview-card">
+              <div class="preview-title">Estrutura HTML</div>
+              <div class="css-ill-code">
+                <span></span><span></span><span></span><span></span>
+                <span style="width:30%; background:#ef4444; margin-top:5px;"></span>
               </div>
-              <div class="flip-face flip-back">Cerca de <strong>70%</strong> do O₂ que respiramos vem de algas marinhas, não das florestas!</div>
             </div>
-          </div>
-          <div class="flip-card" onclick="this.classList.toggle('flipped')">
-            <div class="flip-card-inner">
-              <div class="flip-face flip-front">
-                <div class="icon">🎨</div>
-                <div class="title">Por que verde?</div>
-                <div class="hint">Clique pra ver</div>
+            <div class="preview-card">
+              <div class="preview-title">Exemplo: Quiz</div>
+              <div class="css-ill-quiz">
+                <div class="q-box"></div>
+                <div class="q-opt"></div><div class="q-opt"></div><div class="q-opt"></div>
               </div>
-              <div class="flip-face flip-back">A clorofila <strong>absorve</strong> luz azul e vermelha, e <strong>reflete</strong> a verde. Por isso vemos as plantas verdes!</div>
             </div>
-          </div>
-          <div class="flip-card" onclick="this.classList.toggle('flipped')">
-            <div class="flip-card-inner">
-              <div class="flip-face flip-front">
-                <div class="icon">⚡</div>
-                <div class="title">Fase clara e escura</div>
-                <div class="hint">Clique pra ver</div>
+            <div class="preview-card">
+              <div class="preview-title">Gamificação</div>
+              <div class="css-ill-chart">
+                <div></div><div></div><div></div><div></div>
               </div>
-              <div class="flip-face flip-back">A fotossíntese tem <strong>2 etapas</strong>: fase fotoquímica (com luz) e fase de fixação do carbono (Ciclo de Calvin).</div>
             </div>
-          </div>
-          <div class="flip-card" onclick="this.classList.toggle('flipped')">
-            <div class="flip-card-inner">
-              <div class="flip-face flip-front">
-                <div class="icon">🔬</div>
-                <div class="title">Cloroplasto</div>
-                <div class="hint">Clique pra ver</div>
+            <div class="preview-card">
+              <div class="preview-title">Publicação (GitHub)</div>
+              <div class="css-ill-code" style="align-items: center; justify-content: center;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">🚀</div>
               </div>
-              <div class="flip-face flip-back">Uma única célula vegetal pode ter de <strong>20 a 100 cloroplastos</strong>. Fábricas minúsculas de energia!</div>
             </div>
-          </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 24px;">
-          <button class="btn btn-primary" onclick="completeTheory()">✓ Concluir Teoria & Ir pra Prática</button>
-        </div>
-      </div>
-
-      <!-- PRÁTICA -->
-      <div class="tab-content" id="tab-practice">
-        <div class="practice-intro">
-          <h4>🧩 Monte a Equação da Fotossíntese</h4>
-          <p>Arraste os elementos abaixo para as caixas corretas e complete a equação química.</p>
-        </div>
-
-        <div class="drop-zone-wrap">
-          <div class="dz-label">Arraste os elementos para completar ⬇️</div>
-          <div class="drop-zones">
-            <div class="drop-zone" data-answer="6 CO₂" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropItem(event)">?</div>
-            <span class="drop-static">+</span>
-            <div class="drop-zone" data-answer="6 H₂O" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropItem(event)">?</div>
-            <span class="drop-static">→</span>
-            <div class="drop-zone" data-answer="C₆H₁₂O₆" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropItem(event)">?</div>
-            <span class="drop-static">+</span>
-            <div class="drop-zone" data-answer="6 O₂" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropItem(event)">?</div>
-          </div>
-
-          <div class="draggables" id="draggables">
-            <div class="draggable" draggable="true" ondragstart="dragStart(event)" data-value="C₆H₁₂O₆">C₆H₁₂O₆</div>
-            <div class="draggable" draggable="true" ondragstart="dragStart(event)" data-value="6 O₂">6 O₂</div>
-            <div class="draggable" draggable="true" ondragstart="dragStart(event)" data-value="6 CO₂">6 CO₂</div>
-            <div class="draggable" draggable="true" ondragstart="dragStart(event)" data-value="6 H₂O">6 H₂O</div>
-          </div>
-        </div>
-
-        <div class="practice-result" id="practiceResult"></div>
-
-        <div class="practice-actions">
-          <button class="btn btn-ghost" onclick="resetPractice()">🔄 Tentar de novo</button>
-          <button class="btn btn-primary" onclick="checkPractice()">✓ Verificar resposta</button>
-        </div>
-      </div>
-
-      <!-- QUIZ -->
-      <div class="tab-content" id="tab-quiz">
-        <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
-        <div class="game-screen" id="gameScreen"></div>
-      </div>
-
-      <div class="demo-footer">
-        💡 <strong>É só uma amostra!</strong> Os módulos completos têm ainda mais conteúdo, áudios, resumos em PDF e mapas mentais. Quer um assim pro seu tema?
+         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ===== VITRINE DE DEMOS SOFISTICADAS ===== -->
+<section id="demo">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">🎮 Experiência na Prática</div>
+      <h2>O poder do HTML + IA nas disciplinas</h2>
+      <p>Navegue pelas matérias e interaja com os elementos. Transformo teoria densa em miniapplicativos leves e envolventes.</p>
+    </div>
+
+    <div class="subj-nav reveal">
+      <button class="subj-btn active" data-target="subj-biologia">🌱 Biologia (Módulo Completo)</button>
+      <button class="subj-btn" data-target="subj-matematica">📐 Matemática</button>
+      <button class="subj-btn" data-target="subj-portugues">📚 Português</button>
+      <button class="subj-btn" data-target="subj-geografia">🌎 Geografia</button>
+      <button class="subj-btn" data-target="subj-quimica">⚗️ Química</button>
+    </div>
+
+    <!-- DEMO 1: BIOLOGIA (FOTOSSÍNTESE ORIGINAL COMPLETA) -->
+    <div class="subj-content active" id="subj-biologia">
+      <div class="demo-wrap reveal">
+        <div class="demo-header">
+          <div class="demo-title">
+            <span class="emoji">🌱</span>
+            <div>
+              <h3>Fotossíntese · Módulo 01</h3>
+              <small>Biologia · 1º Ano do Ensino Médio</small>
+            </div>
+          </div>
+          <div class="demo-stats">
+            <div class="demo-stat"><div class="lbl">XP</div><div class="val" id="xp">0</div></div>
+            <div class="demo-stat"><div class="lbl">Nível</div><div class="val" id="level">1</div></div>
+          </div>
+        </div>
+
+        <!-- ABAS DA BIOLOGIA -->
+        <div class="tabs">
+          <button class="tab active" data-tab="theory">📖 Teoria <span class="check" id="check-theory" style="display:none">✓</span></button>
+          <button class="tab" data-tab="practice">🧩 Prática <span class="check" id="check-practice" style="display:none">✓</span></button>
+          <button class="tab" data-tab="quiz">🎯 Quiz <span class="check" id="check-quiz" style="display:none">✓</span></button>
+        </div>
+
+        <!-- TEORIA BIOLOGIA -->
+        <div class="tab-content active" id="tab-theory">
+          <div class="theory-intro">
+            <h4>🌿 O que é Fotossíntese?</h4>
+            <p>A <strong>fotossíntese</strong> é o processo pelo qual as plantas, algas e algumas bactérias transformam <strong>luz solar</strong>, <strong>gás carbônico (CO₂)</strong> e <strong>água (H₂O)</strong> em <strong>glicose</strong> (alimento) e <strong>oxigênio</strong> (O₂).</p>
+            <p>Esse processo ocorre nos <strong>cloroplastos</strong>, graças ao pigmento verde chamado <strong>clorofila</strong>. É através dela que a vida na Terra como conhecemos é possível! 🌍</p>
+          </div>
+
+          <div class="scene">
+            <div class="sun"></div>
+            <div class="sun-rays"></div><div class="sun-rays"></div><div class="sun-rays"></div>
+            <div class="plant">🌿</div>
+            <div class="molecule mol-co2">CO₂</div>
+            <div class="molecule mol-h2o">H₂O</div>
+            <div class="molecule mol-o2">O₂</div>
+            <div class="molecule mol-glucose">C₆H₁₂O₆</div>
+            <div class="scene-label">🎬 Animação: observe as moléculas entrando e saindo</div>
+          </div>
+
+          <div class="equation-display">
+            <div class="eq-label">⚗️ Equação Química</div>
+            <div class="equation">
+              <span class="eq-part reagent">6 CO₂</span><span class="eq-plus">+</span>
+              <span class="eq-part reagent">6 H₂O</span><span class="eq-arrow">—☀️→</span>
+              <span class="eq-part product">C₆H₁₂O₆</span><span class="eq-plus">+</span>
+              <span class="eq-part product">6 O₂</span>
+            </div>
+          </div>
+
+          <h4 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; margin: 24px 0 12px; color: var(--text);">💡 Clique pra revelar curiosidades</h4>
+          <div class="curiosities">
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner"><div class="flip-face flip-front"><div class="icon">🌊</div><div class="title">Oxigênio dos oceanos</div><div class="hint">Clique pra ver</div></div><div class="flip-face flip-back">Cerca de <strong>70%</strong> do O₂ que respiramos vem de algas marinhas, não das florestas!</div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner"><div class="flip-face flip-front"><div class="icon">🎨</div><div class="title">Por que verde?</div><div class="hint">Clique pra ver</div></div><div class="flip-face flip-back">A clorofila <strong>absorve</strong> luz azul e vermelha, e <strong>reflete</strong> a verde. Por isso vemos as plantas verdes!</div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner"><div class="flip-face flip-front"><div class="icon">⚡</div><div class="title">Fase clara e escura</div><div class="hint">Clique pra ver</div></div><div class="flip-face flip-back">A fotossíntese tem <strong>2 etapas</strong>: fase fotoquímica (com luz) e fase de fixação do carbono (Ciclo de Calvin).</div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner"><div class="flip-face flip-front"><div class="icon">🔬</div><div class="title">Cloroplasto</div><div class="hint">Clique pra ver</div></div><div class="flip-face flip-back">Uma única célula vegetal pode ter de <strong>20 a 100 cloroplastos</strong>. Fábricas minúsculas de energia!</div></div>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 24px;">
+            <button class="btn btn-primary" onclick="completeTheory()">✓ Concluir Teoria & Ir pra Prática</button>
+          </div>
+        </div>
+
+        <!-- PRÁTICA BIOLOGIA -->
+        <div class="tab-content" id="tab-practice">
+          <div class="practice-intro">
+            <h4>🧩 Monte a Equação da Fotossíntese</h4>
+            <p>Arraste os elementos abaixo para as caixas corretas e complete a equação química.</p>
+          </div>
+
+          <div class="drop-zone-wrap">
+            <div class="dz-label">Arraste os elementos para completar ⬇️</div>
+            <div class="drop-zones">
+              <div class="drop-zone" data-answer="6 CO₂" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropItem(event)">?</div><span class="drop-static">+</span>
+              <div class="drop-zone" data-answer="6 H₂O" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropItem(event)">?</div><span class="drop-static">→</span>
+              <div class="drop-zone" data-answer="C₆H₁₂O₆" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropItem(event)">?</div><span class="drop-static">+</span>
+              <div class="drop-zone" data-answer="6 O₂" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropItem(event)">?</div>
+            </div>
+
+            <div class="draggables" id="draggables">
+              <div class="draggable" draggable="true" ondragstart="dragStart(event)" data-value="C₆H₁₂O₆">C₆H₁₂O₆</div>
+              <div class="draggable" draggable="true" ondragstart="dragStart(event)" data-value="6 O₂">6 O₂</div>
+              <div class="draggable" draggable="true" ondragstart="dragStart(event)" data-value="6 CO₂">6 CO₂</div>
+              <div class="draggable" draggable="true" ondragstart="dragStart(event)" data-value="6 H₂O">6 H₂O</div>
+            </div>
+          </div>
+
+          <div class="practice-result" id="practiceResult"></div>
+
+          <div class="practice-actions">
+            <button class="btn btn-ghost" onclick="resetPractice()">🔄 Tentar de novo</button>
+            <button class="btn btn-primary" onclick="checkPractice()">✓ Verificar resposta</button>
+          </div>
+        </div>
+
+        <!-- QUIZ BIOLOGIA -->
+        <div class="tab-content" id="tab-quiz">
+          <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+          <div class="game-screen" id="gameScreen"></div>
+        </div>
+
+        <div class="demo-footer">
+          💡 <strong>É só uma amostra!</strong> Os módulos completos têm ainda mais conteúdo, áudios, resumos em PDF e mapas mentais. Quer um assim pro seu tema?
+        </div>
+      </div>
+    </div>
+
+    <!-- DEMO 2: MATEMÁTICA (GEOMETRIA DINÂMICA) -->
+    <div class="subj-content" id="subj-matematica">
+      <div class="css-demo-card reveal">
+        <h3 style="font-family:'Space Grotesk'; font-size: 1.8rem;">Geometria em Tempo Real</h3>
+        <p style="color:var(--text-dim); text-align: center; max-width: 600px; margin-bottom: 10px;">
+          Veja o <strong>Teorema de Pitágoras</strong> ganhando vida. <br>Deslize o controle abaixo para alterar o tamanho da base do triângulo e observe o cálculo da hipotenusa se atualizar instantaneamente!
+        </p>
+        
+        <div class="dyn-math-container">
+          <!-- Visor do Triângulo e Slider -->
+          <div class="dyn-visual">
+            <div class="dyn-triangle-wrapper">
+               <div class="dyn-triangle" id="math-tri-dyn"></div>
+               <div class="dyn-label lbl-b">b = 4</div>
+               <div class="dyn-label lbl-a">a = <span id="val-a">3</span></div>
+               <div class="dyn-label lbl-c">c = <span id="val-c">5</span></div>
+            </div>
+            
+            <div style="width: 100%; text-align: center; margin-top: 15px;">
+              <small style="color:var(--text-dim); text-transform:uppercase; letter-spacing:1px; font-size: 0.7rem;">Controle a Base (a)</small>
+              <input type="range" id="mathSlider" min="1" max="7" value="3" step="1" oninput="updateDynamicMath(this.value)">
+            </div>
+          </div>
+
+          <!-- Formula Recalculando -->
+          <div class="dyn-formula">
+             <div class="f-title">Calculadora Visual</div>
+             <div class="f-line">c² = a² + b²</div>
+             <div class="f-line">c² = <span id="val-a-sq" class="hl-val">9</span> + 16</div>
+             <div class="f-line">c = √<span id="val-sum" class="hl-val">25</span></div>
+             <div class="f-result">c = <span id="val-c-res">5</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DEMO 3: PORTUGUÊS -->
+    <div class="subj-content" id="subj-portugues">
+      <div class="css-demo-card reveal">
+        <h3 style="font-family:'Space Grotesk'; font-size: 1.8rem;">Uso dos Porquês</h3>
+        <p style="color:var(--text-dim)">Teste interativo de lacunas. Clique na opção correta para preencher a frase.</p>
+        
+        <div class="pt-quiz-container">
+          <div class="pt-sentence">
+            Eu não fui à escola <span class="pt-blank" id="pt-blank">_____</span> estava chovendo.
+          </div>
+          <div class="pt-options">
+            <button class="pt-btn" onclick="checkPtAnswer(this, false, 'por que')">por que</button>
+            <button class="pt-btn" onclick="checkPtAnswer(this, true, 'porque')">porque</button>
+            <button class="pt-btn" onclick="checkPtAnswer(this, false, 'porquê')">porquê</button>
+            <button class="pt-btn" onclick="checkPtAnswer(this, false, 'por quê')">por quê</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEMO 4: GEOGRAFIA -->
+    <div class="subj-content" id="subj-geografia">
+      <div class="css-demo-card reveal" style="background: transparent; border: none; padding: 0;">
+        <p style="color:var(--text-dim); text-align:center; margin-bottom: 20px;">Passe o mouse sobre o card para ver o efeito 3D Glassmorphism.</p>
+        
+        <div class="geo-container">
+          <div class="geo-card">
+            <div class="globe-spinner"></div>
+            <div class="geo-title">Brasil</div>
+            <div class="geo-data">
+              <div class="geo-stat"><span>Capital:</span> <strong>Brasília</strong></div>
+              <div class="geo-stat"><span>População:</span> <strong>214 Milhões</strong></div>
+              <div class="geo-stat"><span>Continente:</span> <strong>América do Sul</strong></div>
+              <div class="geo-stat"><span>Bioma:</span> <strong>Amazônia</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEMO 5: QUÍMICA -->
+    <div class="subj-content" id="subj-quimica">
+      <div class="css-demo-card reveal">
+        <h3 style="font-family:'Space Grotesk'; font-size: 1.8rem;">Modelo Atômico (Carbono)</h3>
+        <p style="color:var(--text-dim)">Animação orbital gerada puramente em CSS, sem uso de vídeos pesados.</p>
+        
+        <div class="chem-container">
+          <div class="atom">
+            <div class="nucleus">C</div>
+            <div class="orbit orbit-1"><div class="electron"></div><div class="electron" style="top:auto; bottom:-6px;"></div></div>
+            <div class="orbit orbit-2"><div class="electron"></div><div class="electron" style="top:auto; bottom:-6px;"></div><div class="electron" style="top:50%; left:-6px;"></div><div class="electron" style="top:50%; left:auto; right:-6px;"></div></div>
+          </div>
+          <div class="chem-info">
+            Número Atômico: <span>6</span> &nbsp;|&nbsp; Elétrons na Camada de Valência: <span>4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== SOBRE MIM ===== -->
 <section id="sobre">
   <div class="container">
     <div class="about-grid reveal">
@@ -1176,98 +806,118 @@
         <div class="skills">
           <span class="skill">HTML Interativo</span>
           <span class="skill">NotebookLM</span>
-          <span class="skill">IA Generativa</span>
+          <span class="skill">Engenharia de Prompt</span>
           <span class="skill">Gamificação</span>
-          <span class="skill">Mapas Mentais</span>
-          <span class="skill">Didática Digital</span>
+          <span class="skill">Soluções Educacionais</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ===== SERVIÇOS ===== -->
 <section id="servicos">
   <div class="container">
     <div class="section-header reveal">
-      <div class="section-tag">Soluções</div>
-      <h2>Educação Interativa & IA</h2>
-      <p>Do módulo individual ao pacote bimestral completo — escolha a solução ideal para suas aulas.</p>
+      <div class="section-tag">Soluções Customizadas</div>
+      <h2>Catálogo de Serviços Educacionais</h2>
+      <p>Escolha a solução ideal para transformar a experiência de aprendizado dos seus alunos.</p>
     </div>
 
     <div class="services-grid">
+      <!-- Serviço 1: Módulo HTML -->
       <div class="service-card reveal">
-        <span class="card-category">Individual</span>
+        <span class="card-category">Interatividade</span>
         <div class="card-icon">📱</div>
-        <h3>Módulo Interativo</h3>
+        <h3>Módulo HTML Interativo</h3>
         <div class="deliverable">1 Arquivo HTML único</div>
-        <p class="description">Um "mini-site" que funciona offline em qualquer celular/PC, contendo teoria, botões interativos e desafios gamificados sobre o tema escolhido.</p>
+        <p class="description">Um "mini-site" offline para celular/PC, contendo teoria estruturada e gamificação focada em um conteúdo específico.</p>
         <div class="card-footer">
-          <div class="price">R$ 50<small>,00</small></div>
+          <div class="price">R$ 57<small>,00</small></div>
           <a href="#contato" class="card-cta">Contratar →</a>
         </div>
       </div>
 
+      <!-- Serviço 2: Kit Estudo -->
       <div class="service-card featured reveal">
-        <span class="popular-tag">⭐ POPULAR</span>
-        <span class="card-category">Combo</span>
+        <span class="popular-tag">⭐ MAIS VENDIDO</span>
+        <span class="card-category">Combo Individual</span>
         <div class="card-icon">🎯</div>
-        <h3>Kit Estudo 360º</h3>
+        <h3>Kit Estudo 360º (IA)</h3>
         <div class="deliverable">HTML + Resumo + Mapa</div>
-        <p class="description">O arquivo interativo acompanhado de um Resumo Teórico PDF (gerado via NotebookLM) e um Mapa Mental Visual para facilitar a memorização do aluno.</p>
+        <p class="description">O arquivo interativo acompanhado de um Resumo Teórico gerado via IA e um Mapa Mental Visual para fixação perfeita.</p>
         <div class="card-footer">
-          <div class="price">R$ 90<small>,00</small></div>
+          <div class="price">R$ 127<small>,00</small></div>
           <a href="#contato" class="card-cta">Contratar →</a>
         </div>
       </div>
 
+      <!-- Serviço 3: Novo Combo Bimestral -->
       <div class="service-card reveal">
-        <span class="card-category">Volume</span>
+        <span class="popular-tag" style="background:var(--success)">🔄 RECORRENTE</span>
+        <span class="card-category">Escolar / Cursinhos</span>
         <div class="card-icon">📚</div>
-        <h3>Pacote Bimestral</h3>
-        <div class="deliverable">5 Kits Estudo 360º</div>
-        <p class="description">Uma sequência didática completa para um bimestre inteiro. Todos os temas com HTML, Resumo e Mapa Mental prontos para aplicar.</p>
+        <h3>Combo Bimestral</h3>
+        <div class="deliverable">Até 5 Kits 360º no Bimestre</div>
+        <p class="description">Alinhado ao seu plano de ensino. Entrego 1 Kit Completo (HTML + Resumo + Mapa) por semana para acompanhar suas aulas perfeitamente.</p>
         <div class="card-footer">
-          <div class="price">R$ 350<small> a R$ 400</small></div>
+          <div class="price">R$ 497<small>,00</small></div>
+          <a href="#contato" class="card-cta">Contratar →</a>
+        </div>
+      </div>
+      
+      <!-- Serviço 4: Simulados -->
+      <div class="service-card reveal">
+        <span class="card-category">Avaliação</span>
+        <div class="card-icon">📝</div>
+        <h3>Fábrica de Simulados Inéditos</h3>
+        <div class="deliverable">Banco de Questões Originais</div>
+        <p class="description">Criação de provas e simulados 100% livres de plágio (anti-Google), personalizados para o nível e exigência da sua escola.</p>
+        <div class="card-footer">
+          <div class="price">R$ 147<small>/prova</small></div>
           <a href="#contato" class="card-cta">Contratar →</a>
         </div>
       </div>
 
+      <!-- Serviço 5: Apostila -->
       <div class="service-card reveal">
-        <span class="card-category">Treinamento</span>
+        <span class="card-category">Modernização</span>
+        <div class="card-icon">⚡</div>
+        <h3>Conversão "Apostila Viva"</h3>
+        <div class="deliverable">Transformação de PDF estático</div>
+        <p class="description">Envie seu material antigo em PDF e eu transformo todo o conteúdo em um ambiente digital interativo, gamificado e altamente visual.</p>
+        <div class="card-footer">
+          <div class="price" style="font-size: 1.2rem;">Sob Consulta<small><br>Depende do nº de páginas</small></div>
+          <a href="#contato" class="card-cta">Orçar Agora →</a>
+        </div>
+      </div>
+
+      <!-- Serviço 6: Workshop -->
+      <div class="service-card reveal">
+        <span class="card-category">Treinamento Docente</span>
         <div class="card-icon">🎤</div>
         <h3>Workshop IA p/ Docentes</h3>
-        <div class="deliverable">Palestra Prática (1h30)</div>
-        <p class="description">Ensino os professores a usarem IA para criar esses materiais. <strong style="color:var(--text)">Bônus:</strong> Demonstração de como gerar Podcasts e Audiobooks didáticos com NotebookLM.</p>
+        <div class="deliverable">Treinamento Institucional (Remoto)</div>
+        <p class="description">Ensino o corpo docente a usar IA de forma ética e produtiva: criação de aulas, correção ágil e geração de Audiobooks Didáticos.</p>
         <div class="card-footer">
-          <div class="price">R$ 600<small> a R$ 900</small></div>
-          <a href="#contato" class="card-cta">Contratar →</a>
-        </div>
-      </div>
-
-      <div class="service-card reveal">
-        <span class="card-category">Consultoria</span>
-        <div class="card-icon">💡</div>
-        <h3>Mentoria Particular</h3>
-        <div class="deliverable">Aula de 1h via Meet/Zoom</div>
-        <p class="description">Ajudo o professor a transformar um conteúdo específico dele em um material interativo, tirando dúvidas técnicas em tempo real.</p>
-        <div class="card-footer">
-          <div class="price">R$ 150<small>,00</small></div>
-          <a href="#contato" class="card-cta">Contratar →</a>
+          <div class="price">R$ 597<small>,00</small></div>
+          <a href="#contato" class="card-cta">Agendar →</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ===== CONTATO ===== -->
 <section id="contato">
   <div class="container">
     <div class="contact-wrap reveal">
-      <div class="section-tag">Vamos conversar</div>
-      <h2>Pronto pra inovar nas suas aulas?</h2>
-      <p>Me chame no WhatsApp e vamos construir juntos um material didático que seus alunos vão amar.</p>
+      <div class="section-tag">Vamos inovar juntos</div>
+      <h2>Pronto pra elevar o nível das suas aulas?</h2>
+      <p>Me chame no WhatsApp e vamos construir uma estratégia educacional focada no que realmente importa: o aprendizado e engajamento do aluno.</p>
 
       <div class="contact-buttons">
-        <a href="https://wa.me/5584999279750?text=Ol%C3%A1%20J%C3%B3!%20Vi%20seu%20portif%C3%B3lio%20e%20quero%20saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es." target="_blank" class="btn btn-whats">
+        <a href="https://wa.me/5584999279750?text=Ol%C3%A1%20J%C3%B3!%20Vi%20seu%20portif%C3%B3lio%20e%20gostaria%20de%20falar%20sobre%20suas%20solu%C3%A7%C3%B5es%20educacionais." target="_blank" class="btn btn-whats">
           💬 Chamar no WhatsApp
         </a>
       </div>
@@ -1283,7 +933,7 @@
 
 <footer>
   <div class="container">
-    © 2026 <strong style="color:var(--text)">Jó Adrian de Souza Ferreira</strong> — Educação Interativa & IA. Feito com 💜 e café.
+    © 2026 <strong style="color:var(--text)">Jó Adrian de Souza Ferreira</strong> — Educação Interativa & IA. Feito com 💜 e inovação.
   </div>
 </footer>
 
@@ -1307,21 +957,31 @@
     });
   });
 
-  // ===== GAMIFICAÇÃO GLOBAL =====
+  // ===== TROCA DE DISCIPLINAS (MENU PRINCIPAL DA DEMO) =====
+  document.querySelectorAll('.subj-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.subj-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.subj-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.target).classList.add('active');
+      
+      // Ajuste inicial pro slider se abrir Matemática
+      if(btn.dataset.target === 'subj-matematica') {
+        const slider = document.getElementById('mathSlider');
+        if(slider) updateDynamicMath(slider.value);
+      }
+    });
+  });
+
+  // ===== LÓGICA DA BIOLOGIA (FOTOSSÍNTESE - COMPLETA) =====
   let xp = 0;
   let level = 1;
-  const achievements = {
-    theory: false,
-    practice: false,
-    quiz: false,
-    perfectQuiz: false
-  };
+  const achievements = { theory: false, practice: false, quiz: false, perfectQuiz: false };
 
   function addXP(amount) {
     const target = xp + amount;
     const xpEl = document.getElementById('xp');
-    const start = xp;
-    const duration = 800;
+    const start = xp; const duration = 800;
     const startTime = performance.now();
     
     function update(now) {
@@ -1342,21 +1002,7 @@
     requestAnimationFrame(update);
   }
 
-  function launchConfetti() {
-    const colors = ['#6366f1', '#8b5cf6', '#06b6d4', '#10b981', '#fbbf24', '#ef4444'];
-    for (let i = 0; i < 60; i++) {
-      const c = document.createElement('div');
-      c.className = 'confetti';
-      c.style.left = Math.random() * 100 + 'vw';
-      c.style.background = colors[Math.floor(Math.random() * colors.length)];
-      c.style.animationDuration = (Math.random() * 2 + 2) + 's';
-      c.style.animationDelay = Math.random() * 0.3 + 's';
-      document.body.appendChild(c);
-      setTimeout(() => c.remove(), 4500);
-    }
-  }
-
-  // ===== ABAS =====
+  // Abas Internas da Biologia
   document.querySelectorAll('.tab').forEach(tab => {
     tab.addEventListener('click', () => {
       const target = tab.dataset.tab;
@@ -1367,7 +1013,6 @@
     });
   });
 
-  // ===== TEORIA =====
   function completeTheory() {
     if (!achievements.theory) {
       achievements.theory = true;
@@ -1377,34 +1022,20 @@
     document.querySelector('.tab[data-tab="practice"]').click();
   }
 
-  // ===== DRAG & DROP =====
+  // Drag & Drop Biologia
   let draggedEl = null;
-
-  function dragStart(e) {
-    draggedEl = e.target;
-    e.dataTransfer.effectAllowed = 'move';
-  }
-
-  function dragOver(e) {
-    e.preventDefault();
-    e.currentTarget.classList.add('drag-over');
-  }
-
-  function dragLeave(e) {
-    e.currentTarget.classList.remove('drag-over');
-  }
-
+  function dragStart(e) { draggedEl = e.target; e.dataTransfer.effectAllowed = 'move'; }
+  function dragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+  function dragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
   function dropItem(e) {
     e.preventDefault();
     const zone = e.currentTarget;
     zone.classList.remove('drag-over');
     if (!draggedEl) return;
     
-    // Se já tem algo, devolve pro pool
     if (zone.classList.contains('filled')) {
       const prev = zone.textContent;
-      const draggables = document.querySelectorAll('.draggable');
-      draggables.forEach(d => {
+      document.querySelectorAll('.draggable').forEach(d => {
         if (d.dataset.value === prev) d.classList.remove('used');
       });
     }
@@ -1416,7 +1047,6 @@
     draggedEl = null;
   }
 
-  // Touch support simples (click to select + click to place)
   let selectedMobile = null;
   document.querySelectorAll('.draggable').forEach(d => {
     d.addEventListener('click', () => {
@@ -1426,6 +1056,7 @@
       selectedMobile = d;
     });
   });
+  
   document.querySelectorAll('.drop-zone').forEach(z => {
     z.addEventListener('click', () => {
       if (!selectedMobile) return;
@@ -1446,18 +1077,14 @@
 
   function checkPractice() {
     const zones = document.querySelectorAll('.drop-zone');
-    let correctCount = 0;
-    let allFilled = true;
+    let correctCount = 0; let allFilled = true;
     
     zones.forEach(z => {
       if (!z.classList.contains('filled')) allFilled = false;
       if (z.textContent.trim() === z.dataset.answer) {
-        z.classList.add('correct');
-        z.classList.remove('wrong');
-        correctCount++;
+        z.classList.add('correct'); z.classList.remove('wrong'); correctCount++;
       } else if (z.classList.contains('filled')) {
-        z.classList.add('wrong');
-        z.classList.remove('correct');
+        z.classList.add('wrong'); z.classList.remove('correct');
       }
     });
     
@@ -1474,8 +1101,7 @@
       if (!achievements.practice) {
         achievements.practice = true;
         document.getElementById('check-practice').style.display = 'inline';
-        addXP(30);
-        launchConfetti();
+        addXP(30); launchConfetti();
       }
     } else {
       result.className = 'practice-result error show';
@@ -1484,55 +1110,22 @@
   }
 
   function resetPractice() {
-    document.querySelectorAll('.drop-zone').forEach(z => {
-      z.textContent = '?';
-      z.classList.remove('filled', 'correct', 'wrong');
-    });
-    document.querySelectorAll('.draggable').forEach(d => {
-      d.classList.remove('used');
-      d.style.outline = '';
-    });
+    document.querySelectorAll('.drop-zone').forEach(z => { z.textContent = '?'; z.classList.remove('filled', 'correct', 'wrong'); });
+    document.querySelectorAll('.draggable').forEach(d => { d.classList.remove('used'); d.style.outline = ''; });
     document.getElementById('practiceResult').classList.remove('show');
     selectedMobile = null;
   }
 
-  // ===== QUIZ =====
+  // Quiz Biologia
   const questions = [
-    {
-      q: "Qual é a principal função da fotossíntese nas plantas?",
-      options: ["Eliminar gás carbônico e produzir energia luminosa", "Produzir glicose e oxigênio usando luz solar", "Absorver oxigênio e liberar gás carbônico", "Transformar minerais do solo em água"],
-      correct: 1,
-      explain: "A fotossíntese usa luz solar, CO₂ e água para produzir glicose (alimento) e liberar O₂."
-    },
-    {
-      q: "Em qual organela da célula vegetal ocorre a fotossíntese?",
-      options: ["Mitocôndria", "Núcleo", "Cloroplasto", "Ribossomo"],
-      correct: 2,
-      explain: "Os cloroplastos contêm clorofila, o pigmento verde que capta a luz solar."
-    },
-    {
-      q: "Qual gás é LIBERADO como produto da fotossíntese?",
-      options: ["Gás carbônico (CO₂)", "Nitrogênio (N₂)", "Hidrogênio (H₂)", "Oxigênio (O₂)"],
-      correct: 3,
-      explain: "O O₂ que respiramos vem majoritariamente da fotossíntese das plantas e algas."
-    },
-    {
-      q: "Por que as folhas são verdes?",
-      options: ["Porque absorvem a luz verde", "Porque refletem a luz verde (a clorofila absorve outras cores)", "Porque produzem tinta verde", "Por causa da água armazenada nelas"],
-      correct: 1,
-      explain: "A clorofila absorve azul e vermelho, refletindo a luz verde — por isso as vemos assim."
-    },
-    {
-      q: "A equação geral da fotossíntese é:",
-      options: ["6CO₂ + 6H₂O + luz → C₆H₁₂O₆ + 6O₂", "C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O", "2H₂ + O₂ → 2H₂O", "N₂ + 3H₂ → 2NH₃"],
-      correct: 0,
-      explain: "Seis CO₂ + seis H₂O + luz = glicose + oxigênio. Essa é a equação clássica!"
-    }
+    { q: "Qual é a principal função da fotossíntese nas plantas?", options: ["Eliminar gás carbônico e produzir energia luminosa", "Produzir glicose e oxigênio usando luz solar", "Absorver oxigênio e liberar gás carbônico", "Transformar minerais do solo em água"], correct: 1, explain: "A fotossíntese usa luz solar, CO₂ e água para produzir glicose (alimento) e liberar O₂." },
+    { q: "Em qual organela da célula vegetal ocorre a fotossíntese?", options: ["Mitocôndria", "Núcleo", "Cloroplasto", "Ribossomo"], correct: 2, explain: "Os cloroplastos contêm clorofila, o pigmento verde que capta a luz solar." },
+    { q: "Qual gás é LIBERADO como produto da fotossíntese?", options: ["Gás carbônico (CO₂)", "Nitrogênio (N₂)", "Hidrogênio (H₂)", "Oxigênio (O₂)"], correct: 3, explain: "O O₂ que respiramos vem majoritariamente da fotossíntese das plantas e algas." },
+    { q: "Por que as folhas são verdes?", options: ["Porque absorvem a luz verde", "Porque refletem a luz verde (a clorofila absorve outras cores)", "Porque produzem tinta verde", "Por causa da água armazenada nelas"], correct: 1, explain: "A clorofila absorve azul e vermelho, refletindo a luz verde — por isso as vemos assim." },
+    { q: "A equação geral da fotossíntese é:", options: ["6CO₂ + 6H₂O + luz → C₆H₁₂O₆ + 6O₂", "C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O", "2H₂ + O₂ → 2H₂O", "N₂ + 3H₂ → 2NH₃"], correct: 0, explain: "Seis CO₂ + seis H₂O + luz = glicose + oxigênio." }
   ];
 
-  let current = 0;
-  let score = 0;
-  let hits = 0;
+  let current = 0; let score = 0; let hits = 0;
   const gameScreen = document.getElementById('gameScreen');
   const progressEl = document.getElementById('progress');
 
@@ -1552,24 +1145,18 @@
       </div>
       <div class="feedback" id="feedback"></div>
     `;
-    updateProgress();
-  }
-
-  function updateProgress() {
-    const pct = (current / questions.length) * 100;
-    progressEl.style.width = pct + '%';
+    progressEl.style.width = ((current / questions.length) * 100) + '%';
   }
 
   window.answer = function(idx) {
     const q = questions[current];
-    const buttons = document.querySelectorAll('.option-btn');
+    const buttons = gameScreen.querySelectorAll('.option-btn');
     const feedback = document.getElementById('feedback');
     buttons.forEach(b => b.disabled = true);
 
     if (idx === q.correct) {
       buttons[idx].classList.add('correct');
-      score += 10;
-      hits++;
+      score += 10; hits++;
       feedback.className = 'feedback success show';
       feedback.innerHTML = '✅ <strong>Correto!</strong> ' + q.explain;
       addXP(10);
@@ -1594,9 +1181,7 @@
       document.getElementById('check-quiz').style.display = 'inline';
     }
     if (hits === questions.length && !achievements.perfectQuiz) {
-      achievements.perfectQuiz = true;
-      addXP(20);
-      launchConfetti();
+      achievements.perfectQuiz = true; addXP(20); launchConfetti();
     }
 
     let msg, emoji;
@@ -1633,13 +1218,98 @@
   }
 
   window.restartGame = function() {
-    current = 0;
-    score = 0;
-    hits = 0;
+    current = 0; score = 0; hits = 0; renderQuestion();
+  }
+
+  // Inicializa o Quiz da Biologia
+  if(document.getElementById('gameScreen')) {
     renderQuestion();
   }
 
-  renderQuestion();
+  // ===== INTERATIVIDADE MATEMÁTICA (SLIDER DINÂMICO) =====
+  function updateDynamicMath(val) {
+    const a = parseInt(val);
+    const b = 4; // Fixo
+    const aSq = a * a;
+    const bSq = 16;
+    const sum = aSq + bSq;
+    let c = Math.sqrt(sum).toFixed(1);
+    if (c.endsWith('.0')) c = parseInt(c); // Deixa número inteiro limpo
+
+    // Atualização Visual (Tamanho da base)
+    const tri = document.getElementById('math-tri-dyn');
+    if(!tri) return;
+    const baseWidth = a * 30; // 30px por unidade pra dar um bom tamanho visual
+    tri.style.width = baseWidth + 'px';
+
+    // Atualização das posições das etiquetas (Labels)
+    const lblA = document.querySelector('.lbl-a');
+    const lblC = document.querySelector('.lbl-c');
+    if(lblA) lblA.style.left = (baseWidth / 2) + 'px';
+    if(lblC) lblC.style.left = (baseWidth / 2 + 10) + 'px';
+
+    // Atualização dos Textos
+    document.getElementById('val-a').innerText = a;
+    document.getElementById('val-c').innerText = c;
+    document.getElementById('val-a-sq').innerText = aSq;
+    document.getElementById('val-sum').innerText = sum;
+    document.getElementById('val-c-res').innerText = c;
+  }
+  
+  // Executa uma vez no load pra garantir o visual inicial
+  setTimeout(() => {
+    const slider = document.getElementById('mathSlider');
+    if(slider) updateDynamicMath(slider.value);
+  }, 100);
+
+
+  // ===== INTERATIVIDADE PORTUGUÊS =====
+  function checkPtAnswer(btn, isCorrect, text) {
+    const buttons = btn.parentElement.querySelectorAll('.pt-btn');
+    buttons.forEach(b => { b.className = 'pt-btn'; b.disabled = true; });
+    
+    const blank = document.getElementById('pt-blank');
+    blank.innerText = text;
+
+    if(isCorrect) {
+      btn.classList.add('correct');
+      blank.style.color = 'var(--success)';
+      blank.style.borderColor = 'var(--success)';
+      launchConfetti();
+    } else {
+      btn.classList.add('wrong');
+      blank.style.color = 'var(--danger)';
+      blank.style.borderColor = 'var(--danger)';
+      
+      setTimeout(() => {
+        buttons.forEach(b => {
+          if(b.innerText === 'porque') b.classList.add('correct');
+        });
+      }, 500);
+    }
+    
+    setTimeout(() => {
+      buttons.forEach(b => { b.className = 'pt-btn'; b.disabled = false; });
+      blank.innerText = '_____';
+      blank.style.color = 'var(--accent-3)';
+      blank.style.borderColor = 'var(--text-dim)';
+    }, 3000);
+  }
+
+  // ===== EFEITO GLOBAL DE CONFETE =====
+  function launchConfetti() {
+    const colors = ['#6366f1', '#8b5cf6', '#06b6d4', '#10b981', '#fbbf24'];
+    for (let i = 0; i < 40; i++) {
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = Math.random() * 100 + 'vw';
+      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+      c.style.animationDuration = (Math.random() * 2 + 2) + 's';
+      document.body.appendChild(c);
+      setTimeout(() => c.remove(), 4000);
+    }
+  }
+
 </script>
 
 </body>
